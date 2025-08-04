@@ -47,7 +47,7 @@ const Test = ({ visible, maxNum, onAllCorrectChange }) => {
   if (!visible) return null;
 
   return (
-    <div className="test">
+    <div className="body__content__test">
       <div className="test_1">
         {problems.map((problem, index) => (
           <div key={problem.id} className="problem">

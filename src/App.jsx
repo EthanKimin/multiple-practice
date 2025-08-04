@@ -16,29 +16,38 @@ const App = () => {
 
   return (
     <>
-      <h1>곱셈 연습</h1>
       <div className="body">
-        <button
-          className="strtBtn"
-          onClick={() => {
-            setIsRunning(true);
-            setVisible(true);
-            setAllCorrect(false);
-            setElapsedTime(0); // ✅ 시간 초기화
-          }}
-        >
-          시작
-        </button>
-        <Timer
-          isRunning={isRunning}
-          onTimeChange={setElapsedTime} // ✅ 시간 전달 받기
-        />
-        <Test visible={visible} maxNum={9} onAllCorrectChange={setAllCorrect} />
-        {allCorrect && (
-          <button className="submitBtn" onClick={handleSubmit}>
-            제출
-          </button>
-        )}
+        <h1 className="body__title">곱셈 연습</h1>
+        <div className="body__content">
+          <div className="body__content__first">
+            <button
+              className="body__content__first__strtBtn"
+              onClick={() => {
+                setIsRunning(true);
+                setVisible(true);
+                setAllCorrect(false);
+                setElapsedTime(0); // ✅ 시간 초기화
+              }}
+            >
+              시작
+            </button>
+            <Timer
+              isRunning={isRunning}
+              onTimeChange={setElapsedTime} // ✅ 시간 전달 받기
+            />
+          </div>
+          <Test
+            visible={visible}
+            maxNum={9}
+            onAllCorrectChange={setAllCorrect}
+            className="body__content__test"
+          />
+          {allCorrect && (
+            <button className="body__content__submitBtn" onClick={handleSubmit}>
+              제출
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

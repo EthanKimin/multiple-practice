@@ -22,8 +22,8 @@ const Timer = ({ isRunning, onTimeChange }) => {
   }, [isRunning, onTimeChange]);
 
   return (
-    <div className="timeContainer">
-      <div className="timeContainer_second">{second}초</div>
+    <div className="body__content__first__timer">
+      <div className="body__content__first__timer__second">{second}초</div>
     </div>
   );
 };
