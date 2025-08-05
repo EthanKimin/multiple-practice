@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Test.css";
 
 // eslint-disable-next-line react/prop-types
 const Test = ({ visible, maxNum, onAllCorrectChange }) => {
