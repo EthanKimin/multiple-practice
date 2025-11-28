@@ -1,6 +1,56 @@
-.body__content__test {
+.body {
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   margin: 10px;
+  min-width: 400px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+  background-color: aliceblue;
+  padding: 20px 0 20px 0;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgb(133, 133, 133);
+}
+.body__title {
+  font-size: 40px;
+  padding: 10px;
+}
+.body__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.body__content__first {
+  margin-top: 10px;
+  display: flex;
+}
+.body__content__first__strtBtn {
+  margin-right: 15px;
+}
+.body__content__first__timer {
+  margin-left: 20px;
+  width: 100px;
+  text-align: right;
+}
+
+.body__content__test {
+  padding: 30px 10px;
 }
 .problem {
   margin: 5px;
+}
+
+button {
+  border: none;
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  color: white;
+  background-color: black;
+  font-size: 15px;
+  width: 70px;
+  height: 25px;
+  border-radius: 12px;
 }

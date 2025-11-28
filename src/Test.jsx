@@ -99,14 +99,21 @@ const Test = ({ title, type, maxNum = 9 }) => {
       <h1 className="body__title">{title}</h1>
 
       <div className="body__content">
-        <button
-          className="body__content__first__strtBtn"
-          onClick={handleStartReset}
-        >
-          {isRunning ? "리셋" : "시작"}
-        </button>
+        <div className="body__content__first">
+          <button
+            className="body__content__first__strtBtn"
+            onClick={handleStartReset}
+          >
+            {isRunning ? "리셋" : "시작"}
+          </button>
 
-        <Timer key={resetKey} isRunning={isRunning} onTimeChange={setElapsed} />
+          <Timer
+            key={resetKey}
+            isRunning={isRunning}
+            onTimeChange={setElapsed}
+            className="body__content__first__timer"
+          />
+        </div>
 
         {visible && (
           <div className="test_1">
