@@ -1,20 +1,22 @@
 .welcome {
-  font-family: "Do Hyeon", sans-serif;
-  font-weight: 400;
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 650;
   font-style: normal;
-  margin-top: 100px;
+  font-variation-settings: "wdth" 100;
   height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  margin-top: 125px;
 }
 .welcome__container1 {
   display: flex;
 }
 .welcome__container1__element1 {
-  font-size: 10vw;
+  font-size: 9.5vw;
 }
 .welcome__container1__element2 {
   margin-left: 2vw;
@@ -98,7 +100,12 @@
   scroll-snap-align: start;
 }
 .explain {
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 2vw;
+  background-color: blanchedalmond;
 }
