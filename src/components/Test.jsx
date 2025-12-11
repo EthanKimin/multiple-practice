@@ -96,7 +96,7 @@ const Test = ({ title, type, maxNum = 9 }) => {
 
   return (
     <div className="body">
-      <h1 className="body__title">{title}</h1>
+      <h3 className="body__title">{title}</h3>
 
       <div className="body__content">
         <div className="body__content__first">

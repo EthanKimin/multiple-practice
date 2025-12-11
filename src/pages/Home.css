@@ -1,0 +1,104 @@
+.welcome {
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 100px;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.welcome__container1 {
+  display: flex;
+}
+.welcome__container1__element1 {
+  font-size: 10vw;
+}
+.welcome__container1__element2 {
+  margin-left: 2vw;
+  margin-top: 4vw;
+  font-size: 5vw;
+  color: dimgray;
+}
+.welcome__container2 {
+  display: flex;
+}
+.welcome__container2__element3 {
+  font-size: 6vw;
+  color: darkblue;
+}
+.welcome__container2__element4 {
+  margin-left: 3.5vw;
+  font-size: 3vw;
+  margin-top: 2.5vw;
+  color: dimgray;
+}
+.welcome__container2__element5 {
+  font-size: 6vw;
+  margin-left: 3.5vw;
+  color: darkred;
+}
+/* 애니메이션 정의 */
+.welcome__container1__element1,
+.welcome__container2__element3,
+.welcome__container2__element5 {
+  animation: slideInFromTop 0.8s forwards;
+  opacity: 0;
+}
+
+/* 아래에서 올라오는 요소들 (is, &) */
+.welcome__container1__element2,
+.welcome__container2__element4 {
+  animation: slideInFromBottom 0.8s forwards;
+  opacity: 0;
+}
+.welcome__container1__element1 {
+  animation-delay: 0.1s; /* Mathematics */
+}
+.welcome__container1__element2 {
+  animation-delay: 0.6s; /* is */
+}
+.welcome__container2__element3 {
+  animation-delay: 1.2s; /* Practice */
+}
+.welcome__container2__element4 {
+  animation-delay: 1.6s; /* & */
+}
+.welcome__container2__element5 {
+  animation-delay: 2s; /* Progress */
+}
+/* 위에서 내려오는 애니메이션 */
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 아래에서 올라오는 애니메이션 */
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  } /* 시작 위치: 원래 위치에서 아래로 100px 이동 */
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.page {
+  height: calc(100vh - 125px);
+  scroll-snap-align: start;
+}
+.explain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

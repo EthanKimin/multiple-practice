@@ -1,6 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=BBH+Hegarty&display=swap");
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+}
 h1 {
   display: flex;
   flex-direction: row;
@@ -60,8 +68,25 @@ li:active {
   background-color: azure;
   transform: translate(1px);
 }
+.active {
+  background-color: azure;
+}
 .app {
+  margin-top: 125px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+h2 {
+  margin-top: 15px;
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50px;
+  color: darkred;
+}
+.main-content-snapping-area {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 }
