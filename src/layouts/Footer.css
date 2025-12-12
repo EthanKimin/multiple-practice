@@ -7,7 +7,6 @@ footer {
   color: white;
   display: flex;
   text-align: center;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   /* height 설정도 제거하여 내용물에 맞게 높이가 유동적으로 변하도록 합니다 */
   /* height: 80px; <- 이 부분을 제거 */
   justify-content: center;
@@ -15,4 +14,24 @@ footer {
 }
 .footer-content {
   width: 100%;
+}
+.footer-content__copyright {
+  font-size: 20px;
+}
+.footer-content__ask {
+  font-size: 20px;
+  margin-top: 20px;
+}
+.footer-content__nav {
+  margin-top: 20px;
+}
+a {
+  color: rgb(146, 203, 252);
+}
+
+.footer-content__nav ul li:hover {
+  background-color: dimgray;
+}
+.footer-content__nav ul li:active {
+  background-color: darkgrey;
 }

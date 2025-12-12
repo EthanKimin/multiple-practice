@@ -15,8 +15,16 @@ const Home = () => {
         </div>
       </div>
       <div className="page explain">
-        <div className="explain_text">
-          Math Trail은 기본부터 심화까지 철저히 연습하게 도와줍니다.
+        <div className="explain__text">
+          <div className="explain__text__container">
+            <div className="explain__text__element1">Math Trail</div>
+            <div className="explain__text__element2">은</div>
+          </div>
+          <div className="explain__text__container">
+            <div className="explain__text__element3">기본부터</div>
+            <div className="explain__text__element4">심화까지</div>
+            <div className="explain__text__element5">철저히 잡아줍니다!</div>
+          </div>
         </div>
       </div>
     </>
