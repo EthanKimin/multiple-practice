@@ -98,6 +98,8 @@
 .page {
   height: calc(100vh - 125px);
   scroll-snap-align: start;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 .explain {
   font-family: "Jua", sans-serif;

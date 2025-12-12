@@ -1,0 +1,18 @@
+footer {
+  /* position: fixed를 제거하고 일반적인 흐름에 맡깁니다 */
+  /* position: fixed; <- 이 부분을 제거하거나 주석 처리 */
+
+  width: 100%;
+  background-color: #333;
+  color: white;
+  display: flex;
+  text-align: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  /* height 설정도 제거하여 내용물에 맞게 높이가 유동적으로 변하도록 합니다 */
+  /* height: 80px; <- 이 부분을 제거 */
+  justify-content: center;
+  align-items: center;
+}
+.footer-content {
+  width: 100%;
+}
