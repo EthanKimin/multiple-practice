@@ -1,4 +1,4 @@
-.body {
+.test {
   font-family: "Jua", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -15,30 +15,30 @@
   border-radius: 10px;
   box-shadow: 5px 5px 5px rgb(133, 133, 133);
 }
-.body__title {
+.test__title {
   font-size: 40px;
   padding: 10px;
   color: darkblue;
 }
-.body__content {
+.test__content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.body__content__first {
+.test__content__first {
   margin-top: 10px;
   display: flex;
 }
-.body__content__first__strtBtn {
+.test__content__first__strtBtn {
   margin-right: 15px;
 }
-.body__content__first__timer {
+.test__content__first__timer {
   margin-left: 20px;
   width: 100px;
   text-align: right;
 }
 
-.body__content__test {
+.test__content__test {
   padding: 30px 10px;
 }
 .problem {
@@ -63,4 +63,8 @@ button:active {
   transform: translateY(2px);
   box-shadow: 1px 1px 1px rgb(100, 100, 100);
   background-color: #333; /* 조금 더 어둡게 */
+}
+
+.test:last-child {
+  margin-bottom: 150px;
 }

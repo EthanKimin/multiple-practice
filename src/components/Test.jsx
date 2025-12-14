@@ -95,13 +95,13 @@ const Test = ({ title, type, maxNum = 9 }) => {
   };
 
   return (
-    <div className="body">
-      <h3 className="body__title">{title}</h3>
+    <div className="test">
+      <h3 className="test__title">{title}</h3>
 
-      <div className="body__content">
-        <div className="body__content__first">
+      <div className="test__content">
+        <div className="test__content__first">
           <button
-            className="body__content__first__strtBtn"
+            className="test__content__first__strtBtn"
             onClick={handleStartReset}
           >
             {isRunning ? "리셋" : "시작"}
@@ -111,7 +111,7 @@ const Test = ({ title, type, maxNum = 9 }) => {
             key={resetKey}
             isRunning={isRunning}
             onTimeChange={setElapsed}
-            className="body__content__first__timer"
+            className="test__content__first__timer"
           />
         </div>
 
@@ -138,7 +138,7 @@ const Test = ({ title, type, maxNum = 9 }) => {
         )}
 
         {allCorrect && (
-          <button className="body__content__submitBtn" onClick={handleSubmit}>
+          <button className="test__content__submitBtn" onClick={handleSubmit}>
             제출
           </button>
         )}
