@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 // App.css에 헤더 관련 스타일이 있다면 그대로 import 합니다.
 import "../App.css";
 import "./Header.css";
+import logoImage from "../assets/math_trail_logo.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,11 +12,7 @@ const Header = () => {
     <header>
       {/* 로고 클릭 시 홈으로 이동 (useNavigate 사용) */}
       <h1 onClick={() => navigate("/")}>
-        <img
-          src="/src/assets/math_trail_logo.png"
-          alt="logo"
-          className="logo"
-        />
+        <img src={logoImage} alt="logo" className="logo" />
         <div className="title">
           <div className="title_main">
             <div className="title_main_left">MATH</div>
