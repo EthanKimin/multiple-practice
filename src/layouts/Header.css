@@ -53,6 +53,8 @@ ul {
   border-right: 0;
   display: flex;
   flex-direction: row;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 li {
   font-family: "Fredoka", sans-serif;
