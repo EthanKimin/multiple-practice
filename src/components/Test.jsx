@@ -24,6 +24,11 @@ const generateProblems = (type, maxNum) => {
       b = make();
       display = `${a} + ${b}`;
       correct = a + b;
+    } else if (type === "division") {
+      a = make();
+      b = make();
+      display = `${a * b} ÷ ${b}`;
+      correct = a;
     }
 
     return {

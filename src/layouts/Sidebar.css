@@ -1,0 +1,30 @@
+.sidebar-menu {
+  position: sticky;
+  background-color: white;
+  width: 300px;
+  height: 100%;
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  overflow-y: auto;
+  box-shadow: 2px 2px 2px rgb(133, 133, 133);
+}
+.sidebar-menu nav ul {
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-menu nav ul li {
+  font: inherit;
+  font-size: 25px;
+  border-bottom: 1px solid rgb(194, 194, 194);
+}
+.sidebar-menu nav ul li:hover {
+  background-color: rgb(255, 245, 243);
+}
+.sidebar-menu nav ul li:active {
+  background-color: rgb(253, 221, 214);
+}
+.sidebar-menu nav ul .active {
+  background-color: rgb(253, 221, 214);
+}
