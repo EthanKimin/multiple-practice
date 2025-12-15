@@ -121,17 +121,12 @@ const Test = ({ title, type, maxNum = 9 }) => {
               <div key={p.id} className="problem">
                 {p.display} ={" "}
                 <input
+                  className={`answer ${p.isCorrect === true ? "correct" : ""} ${
+                    p.isCorrect === false ? "incorrect" : ""
+                  }`}
                   value={p.userAnswer}
                   onChange={(e) => handleInput(e, i)}
                 />
-                {p.isCorrect === true && (
-                  <span style={{ color: "green", marginLeft: "8px" }}>
-                    정답!
-                  </span>
-                )}
-                {p.isCorrect === false && (
-                  <span style={{ color: "red", marginLeft: "8px" }}>오답</span>
-                )}
               </div>
             ))}
           </div>

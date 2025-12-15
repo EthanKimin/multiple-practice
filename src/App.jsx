@@ -1,14 +1,14 @@
 import "./App.css";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import Header from "./layouts/Header.jsx";
 import Footer from "./layouts/Footer.jsx";
-import { Routes, Route, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import Basic from "./pages/Basic";
 import Decimal from "./pages/Decimal";
 import Fraction from "./pages/Fraction";
 import Geometry from "./pages/Geometry";
 import Statistics from "./pages/Statistics";
-import { useEffect, useRef } from "react";
 
 const App = () => {
   const mainRef = useRef(null);
