@@ -70,6 +70,10 @@
   .sidebar-container.open .sidebar-menu {
     transform: translateX(0);
   }
+  /* 사이드바 닫혔을 때 50px외에 부분을 문제 부분으로 만듦 */
+  .test-container {
+    margin-left: 50px;
+  }
 }
 
 /* 큰 화면 (769px 이상) - 강제 노출 */
