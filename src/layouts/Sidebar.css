@@ -1,3 +1,6 @@
+.sidebar-container {
+  height: 100%;
+}
 .sidebar-menu {
   position: sticky;
   background-color: white;
@@ -7,6 +10,8 @@
   font-weight: 400;
   font-style: normal;
   overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 500;
   box-shadow: 2px 2px 2px rgb(133, 133, 133);
 }
 .sidebar-menu nav ul {
@@ -27,4 +32,49 @@
 }
 .sidebar-menu nav ul .active {
   background-color: rgb(253, 221, 214);
+}
+.sidebar-menu nav ul .active:hover {
+  background-color: rgb(253, 221, 214);
+}
+
+.sidebar-handle {
+  display: none;
+}
+
+/* 모바일 화면 (768px 이하) */
+@media (max-width: 768px) {
+  .sidebar-menu {
+    position: fixed;
+    left: 0;
+    top: 125;
+  }
+  .sidebar-handle {
+    display: flex; /* 모바일에서 표시 */
+    position: absolute;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    /* 디자인에 맞게 배경색 등 추가 */
+    background: rgba(255, 255, 255, 0.9);
+    writing-mode: vertical-rl;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  /* 닫혔을 때: 300px 중 250px을 왼쪽으로 밀어 50px만 남김 */
+  .sidebar-container.closed .sidebar-menu {
+    transform: translateX(-250px);
+  }
+
+  /* 열렸을 때 */
+  .sidebar-container.open .sidebar-menu {
+    transform: translateX(0);
+  }
+}
+
+/* 큰 화면 (769px 이상) - 강제 노출 */
+@media (min-width: 769px) {
+  .sidebar-container .sidebar-menu {
+    transform: none !important;
+  }
 }

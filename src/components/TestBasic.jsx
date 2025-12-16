@@ -6,30 +6,67 @@ import "./Test.css";
 const generateProblems = (type, maxNum) => {
   const make = () => Math.ceil(Math.random() * maxNum);
 
-  return Array.from({ length: 10 }, (_, i) => {
-    let a, b, display, correct;
+  // 연산별 로직 정의 (표시 방식, 실제 정답 계산)
+  const ops = {
+    plus: () => {
+      const a = make(),
+        b = make();
+      return { display: `${a} + ${b}`, correct: a + b };
+    },
+    minus: () => {
+      const a = 10 + make(),
+        b = make();
+      return { display: `${a} - ${b}`, correct: a - b };
+    },
+    multiple: () => {
+      const a = make(),
+        b = make();
+      return { display: `${a} × ${b}`, correct: a * b };
+    },
+    division: () => {
+      const a = make(),
+        b = make();
+      return { display: `${a * b} ÷ ${b}`, correct: a };
+    },
+    decimalFirstPlus: () => {
+      const a = make() / 10,
+        b = make() / 10;
+      return {
+        display: `${a.toFixed(1)} + ${b.toFixed(1)}`,
+        correct: parseFloat((a + b).toFixed(1)),
+      };
+    },
+    decimalFirstMinus: () => {
+      const a = make() / 10,
+        b = make() / 10;
+      const sum = parseFloat((a + b).toFixed(1));
+      return {
+        display: `${sum.toFixed(1)} - ${b.toFixed(1)}`,
+        correct: parseFloat(a.toFixed(1)),
+      };
+    },
+    decimalSecondPlus: () => {
+      const a = make() / 100,
+        b = make() / 100;
+      return {
+        display: `${a.toFixed(2)} + ${b.toFixed(2)}`,
+        correct: parseFloat((a + b).toFixed(2)),
+      };
+    },
+    decimalSecondMinus: () => {
+      const a = make() / 100,
+        b = make() / 100;
+      const sum = parseFloat((a + b).toFixed(2));
+      return {
+        display: `${sum.toFixed(2)} - ${b.toFixed(2)}`,
+        correct: parseFloat(a.toFixed(2)),
+      };
+    },
+  };
 
-    if (type === "minus") {
-      a = 10 + make();
-      b = make();
-      display = `${a} - ${b}`;
-      correct = a - b;
-    } else if (type === "multiple") {
-      a = make();
-      b = make();
-      display = `${a} × ${b}`;
-      correct = a * b;
-    } else if (type === "plus") {
-      a = make();
-      b = make();
-      display = `${a} + ${b}`;
-      correct = a + b;
-    } else if (type === "division") {
-      a = make();
-      b = make();
-      display = `${a * b} ÷ ${b}`;
-      correct = a;
-    }
+  return Array.from({ length: 10 }, (_, i) => {
+    // 정의된 연산 실행, 없으면 기본값(더하기) 처리
+    const { display, correct } = (ops[type] || ops.plus)();
 
     return {
       id: `q${i}`,
@@ -58,9 +95,17 @@ const Test = ({ title, type, maxNum = 9 }) => {
 
     arr[idx].userAnswer = val;
 
-    if (/^\d+$/.test(val)) {
-      arr[idx].isCorrect = Number(val) === arr[idx].correctAnswer;
-    } else arr[idx].isCorrect = null;
+    // 정규식 수정: 숫자와 소수점(.) 하나를 허용
+    if (/^\d*\.?\d*$/.test(val) && val !== "" && val !== ".") {
+      const userNum = parseFloat(val);
+      const correctNum = arr[idx].correctAnswer;
+
+      // 소수점 계산 오차 방지를 위해 toFixed()나 작은 오차범위(EPSILON) 사용
+      // 여기서는 소수점 첫째자리 문제이므로 toFixed(1)로 변환 후 비교가 안전합니다.
+      arr[idx].isCorrect = Math.abs(userNum - correctNum) < 0.0001;
+    } else {
+      arr[idx].isCorrect = null;
+    }
 
     setProblems(arr);
   };

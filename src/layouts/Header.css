@@ -70,14 +70,15 @@ li {
   cursor: pointer;
 }
 li:hover {
-  background-color: rgb(244, 252, 252);
+  background-color: rgb(238, 255, 255);
 }
 li:active {
-  background-color: azure;
+  background-color: rgb(209, 255, 255);
   transform: translate(1px);
 }
-.active {
-  background-color: azure;
+.active,
+.active:hover {
+  background-color: rgb(209, 255, 255);
 }
 .app {
   display: flex;
