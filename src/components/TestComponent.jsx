@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Timer from "./Timer";
-import "./Test.css";
+import "./shared-test-style.css";
 
 /* 문제 생성 로직을 한 함수 안에서 처리 */
 const generateProblems = (type, maxNum) => {
@@ -79,7 +79,7 @@ const generateProblems = (type, maxNum) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const Test = ({ title, type, maxNum = 9 }) => {
+const TestComponent = ({ title, type, maxNum = 9 }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [visible, setVisible] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -192,4 +192,4 @@ const Test = ({ title, type, maxNum = 9 }) => {
   );
 };
 
-export default Test;
+export default TestComponent;

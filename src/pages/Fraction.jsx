@@ -1,3 +1,5 @@
+import "./shared-page-style.css";
+
 const Fraction = () => {
   return (
     <div className="app page">

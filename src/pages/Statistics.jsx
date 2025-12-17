@@ -1,3 +1,5 @@
+import "./shared-page-style.css";
+
 const Statistics = () => {
   return (
     <div className="app page">

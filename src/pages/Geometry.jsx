@@ -1,3 +1,5 @@
+import "./shared-page-style.css";
+
 const Geometry = () => {
   return (
     <div className="app page">

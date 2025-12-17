@@ -1,7 +1,7 @@
 import useTestLogic from "../hooks/useTestLogic";
-import TestBasic from "../components/TestBasic";
+import TestComponent from "../components/TestComponent";
 import TestLayout from "../layouts/TestLayout";
-import "./TestPage.css";
+import "./shared-page-style.css";
 
 const Decimal = () => {
   const menuItems = [
@@ -21,7 +21,7 @@ const Decimal = () => {
       onMenuClick={handleMenuClick}
     >
       {selectedItem ? (
-        <TestBasic
+        <TestComponent
           key={selectedItem.id}
           title={selectedItem.title}
           type={selectedItem.id}
