@@ -79,7 +79,7 @@ const generateProblems = (type, maxNum) => {
 };
 
 // eslint-disable-next-line react/prop-types
-const TestComponent = ({ title, type, maxNum = 9 }) => {
+export const BasicAndDecimalTest = ({ title, type, maxNum = 9 }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [visible, setVisible] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -191,5 +191,3 @@ const TestComponent = ({ title, type, maxNum = 9 }) => {
     </div>
   );
 };
-
-export default TestComponent;

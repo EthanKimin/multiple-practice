@@ -1,7 +1,8 @@
 import useTestLogic from "../hooks/useTestLogic";
-import TestComponent from "../components/TestComponent";
+import { BasicAndDecimalTest } from "../components/TestComponent";
 import TestLayout from "../layouts/TestLayout";
 import "./shared-page-style.css";
+import Placeholder from "../components/Placeholder";
 
 const Decimal = () => {
   const menuItems = [
@@ -21,14 +22,14 @@ const Decimal = () => {
       onMenuClick={handleMenuClick}
     >
       {selectedItem ? (
-        <TestComponent
+        <BasicAndDecimalTest
           key={selectedItem.id}
           title={selectedItem.title}
           type={selectedItem.id}
           maxNum={selectedItem.maxNum}
         />
       ) : (
-        <div className="placeholder-text">연습할 종류를 선택하세요.</div>
+        <Placeholder />
       )}
     </TestLayout>
   );
