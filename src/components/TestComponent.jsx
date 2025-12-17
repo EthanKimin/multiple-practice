@@ -1,82 +1,13 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import Timer from "./Timer";
-import "./shared-test-style.css";
+import "./TestComponent.css";
+import { generateProblems, isSameFraction } from "../utils/problemGenerator";
+import ProblemRow from "./ProblemRow";
 
-/* 문제 생성 로직을 한 함수 안에서 처리 */
-const generateProblems = (type, maxNum) => {
-  const make = () => Math.ceil(Math.random() * maxNum);
-
-  // 연산별 로직 정의 (표시 방식, 실제 정답 계산)
-  const ops = {
-    plus: () => {
-      const a = make(),
-        b = make();
-      return { display: `${a} + ${b}`, correct: a + b };
-    },
-    minus: () => {
-      const a = 10 + make(),
-        b = make();
-      return { display: `${a} - ${b}`, correct: a - b };
-    },
-    multiple: () => {
-      const a = make(),
-        b = make();
-      return { display: `${a} × ${b}`, correct: a * b };
-    },
-    division: () => {
-      const a = make(),
-        b = make();
-      return { display: `${a * b} ÷ ${b}`, correct: a };
-    },
-    decimalFirstPlus: () => {
-      const a = make() / 10,
-        b = make() / 10;
-      return {
-        display: `${a.toFixed(1)} + ${b.toFixed(1)}`,
-        correct: parseFloat((a + b).toFixed(1)),
-      };
-    },
-    decimalFirstMinus: () => {
-      const a = make() / 10,
-        b = make() / 10;
-      const sum = parseFloat((a + b).toFixed(1));
-      return {
-        display: `${sum.toFixed(1)} - ${b.toFixed(1)}`,
-        correct: parseFloat(a.toFixed(1)),
-      };
-    },
-    decimalSecondPlus: () => {
-      const a = make() / 100,
-        b = make() / 100;
-      return {
-        display: `${a.toFixed(2)} + ${b.toFixed(2)}`,
-        correct: parseFloat((a + b).toFixed(2)),
-      };
-    },
-    decimalSecondMinus: () => {
-      const a = make() / 100,
-        b = make() / 100;
-      const sum = parseFloat((a + b).toFixed(2));
-      return {
-        display: `${sum.toFixed(2)} - ${b.toFixed(2)}`,
-        correct: parseFloat(a.toFixed(2)),
-      };
-    },
-  };
-
-  return Array.from({ length: 10 }, (_, i) => {
-    // 정의된 연산 실행, 없으면 기본값(더하기) 처리
-    const { display, correct } = (ops[type] || ops.plus)();
-
-    return {
-      id: `q${i}`,
-      display,
-      correctAnswer: correct,
-      userAnswer: "",
-      isCorrect: null,
-    };
-  });
-};
+/* =======================
+   Main Component
+======================= */
 
 // eslint-disable-next-line react/prop-types
 export const BasicAndDecimalTest = ({ title, type, maxNum = 9 }) => {
@@ -85,24 +16,32 @@ export const BasicAndDecimalTest = ({ title, type, maxNum = 9 }) => {
   const [elapsed, setElapsed] = useState(0);
   const [allCorrect, setAllCorrect] = useState(false);
   const [resetKey, setResetKey] = useState(0);
-
   const [problems, setProblems] = useState(generateProblems(type, maxNum));
 
-  /** 문제 입력 처리 */
-  const handleInput = (e, idx) => {
+  /** 일반 숫자 입력 처리 */
+  const handleInput = (idx, val) => {
     const arr = [...problems];
-    const val = e.target.value;
+    arr[idx].userAnswer = val; // 문자열 그대로 저장
 
-    arr[idx].userAnswer = val;
-
-    // 정규식 수정: 숫자와 소수점(.) 하나를 허용
+    const correctNum = arr[idx].correctAnswer;
     if (/^\d*\.?\d*$/.test(val) && val !== "" && val !== ".") {
-      const userNum = parseFloat(val);
-      const correctNum = arr[idx].correctAnswer;
+      arr[idx].isCorrect = Math.abs(parseFloat(val) - correctNum) < 0.0001;
+    } else {
+      arr[idx].isCorrect = null;
+    }
+    setProblems(arr);
+  };
 
-      // 소수점 계산 오차 방지를 위해 toFixed()나 작은 오차범위(EPSILON) 사용
-      // 여기서는 소수점 첫째자리 문제이므로 toFixed(1)로 변환 후 비교가 안전합니다.
-      arr[idx].isCorrect = Math.abs(userNum - correctNum) < 0.0001;
+  /** 분수 입력 처리 */
+  const handleFractionInput = (idx, val) => {
+    const arr = [...problems];
+    arr[idx].userAnswer = val; // n, d 모두 문자열
+
+    const n = parseInt(val.n, 10);
+    const d = parseInt(val.d, 10);
+
+    if (!isNaN(n) && !isNaN(d) && d !== 0) {
+      arr[idx].isCorrect = isSameFraction({ n, d }, arr[idx].correctAnswer);
     } else {
       arr[idx].isCorrect = null;
     }
@@ -115,30 +54,17 @@ export const BasicAndDecimalTest = ({ title, type, maxNum = 9 }) => {
     setAllCorrect(problems.every((p) => p.isCorrect === true));
   }, [problems]);
 
-  /** 시작/리셋 버튼 */
+  /** 시작 / 리셋 */
   const handleStartReset = () => {
-    if (!isRunning) {
-      // 시작
-      setProblems(generateProblems(type, maxNum));
-      setIsRunning(true);
-      setVisible(true);
-      setElapsed(0);
-      setResetKey((k) => k + 1);
-    } else {
-      // 리셋
-      setIsRunning(false);
-      setElapsed(0);
-      setAllCorrect(false);
-
-      // 문제 & 타이머 리셋
-      setResetKey((k) => k + 1);
-      setProblems(generateProblems(type, maxNum));
-
-      setIsRunning(true);
-    }
+    setProblems(generateProblems(type, maxNum));
+    setIsRunning(true);
+    setVisible(true);
+    setElapsed(0);
+    setResetKey((k) => k + 1);
+    setAllCorrect(false);
   };
 
-  /** 제출 버튼 */
+  /** 제출 */
   const handleSubmit = () => {
     setIsRunning(false);
     alert(`소요 시간: ${elapsed}초`);
@@ -168,16 +94,16 @@ export const BasicAndDecimalTest = ({ title, type, maxNum = 9 }) => {
         {visible && (
           <div className="test_1">
             {problems.map((p, i) => (
-              <div key={p.id} className="problem">
-                {p.display} ={" "}
-                <input
-                  className={`answer ${p.isCorrect === true ? "correct" : ""} ${
-                    p.isCorrect === false ? "incorrect" : ""
-                  }`}
-                  value={p.userAnswer}
-                  onChange={(e) => handleInput(e, i)}
-                />
-              </div>
+              <ProblemRow
+                key={p.id}
+                problem={p}
+                type={type}
+                onAnswerChange={(val) =>
+                  type === "fractionPlusSimple"
+                    ? handleFractionInput(i, val)
+                    : handleInput(i, val)
+                }
+              />
             ))}
           </div>
         )}

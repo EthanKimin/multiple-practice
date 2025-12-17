@@ -83,3 +83,23 @@ button:active {
 .test:last-child {
   margin-bottom: 150px;
 }
+
+/* 분수표시 */
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 6px;
+}
+
+.fraction__top,
+.fraction__bottom {
+  width: 32px;
+  text-align: center;
+}
+
+.fraction__bar {
+  width: 100%;
+  border-top: 2px solid #000;
+  margin: 2px 0;
+}
