@@ -9,6 +9,7 @@ import Decimal from "./pages/Decimal";
 import Fraction from "./pages/Fraction";
 import Geometry from "./pages/Geometry";
 import Statistics from "./pages/Statistics";
+import Privacy from "./pages/Privacy.jsx";
 
 const App = () => {
   const mainRef = useRef(null);
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/fraction" element={<Fraction />} />
           <Route path="/geometry" element={<Geometry />} />
           <Route path="/statistics" element={<Statistics />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
         <Footer />
       </main>

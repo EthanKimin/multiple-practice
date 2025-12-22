@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Sidebar.css";
 
 const Sidebar = ({ menuItems, selectedType, onMenuClick }) => {
@@ -21,11 +21,6 @@ const Sidebar = ({ menuItems, selectedType, onMenuClick }) => {
       setIsOpen(false);
     }
   };
-
-  // 상태가 변경될 때마다 콘솔에 출력
-  useEffect(() => {
-    console.log("Sidebar isOpen state changed to:", isOpen);
-  }, [isOpen]); // isOpen 상태가 변경될 때마다 실행
 
   return (
     <div

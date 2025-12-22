@@ -1,0 +1,27 @@
+.privacy-policy {
+  font-family: "Jua", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.privacy-policy h2 {
+  font-size: 40px;
+}
+.privacy-policy h3 {
+  font-size: 25px;
+}
+.privacy-policy ul {
+  border: none;
+  flex-direction: column;
+  justify-content: left;
+  align-items: start;
+}
+.privacy-policy ul li,
+.privacy-policy p,
+.privacy-policy table {
+  font: inherit;
+  margin-left: 25px;
+  padding: 0;
+}
+.privacy-policy .privacy-policy__explain {
+  margin-left: 0;
+}
