@@ -26,32 +26,40 @@ const Header = () => {
         <ul>
           {/* 메뉴 클릭 시 Link 컴포넌트를 사용하여 페이지 이동 (새로고침 방지) */}
           <li
-            onClick={() => navigate("/basic")}
-            className={location.pathname === "/basic" ? "active" : ""}
+            onClick={() => navigate("/practice/basic")}
+            className={location.pathname === "/practice/basic" ? "active" : ""}
           >
             BASIC
           </li>
           <li
-            onClick={() => navigate("/decimal")}
-            className={location.pathname === "/decimal" ? "active" : ""}
+            onClick={() => navigate("/practice/decimal")}
+            className={
+              location.pathname === "/practice/decimal" ? "active" : ""
+            }
           >
             DECIMAL
           </li>
           <li
-            onClick={() => navigate("/fraction")}
-            className={location.pathname === "/fraction" ? "active" : ""}
+            onClick={() => navigate("/practice/fraction")}
+            className={
+              location.pathname === "/practice/fraction" ? "active" : ""
+            }
           >
             FRACTION
           </li>
           <li
-            onClick={() => navigate("/geometry")}
-            className={location.pathname === "/geometry" ? "active" : ""}
+            onClick={() => navigate("/practice/geometry")}
+            className={
+              location.pathname === "/practice/geometry" ? "active" : ""
+            }
           >
             GEOMETRY
           </li>
           <li
-            onClick={() => navigate("/statistics")}
-            className={location.pathname === "/statistics" ? "active" : ""}
+            onClick={() => navigate("/practice/statistics")}
+            className={
+              location.pathname === "/practice/statistics" ? "active" : ""
+            }
           >
             STATISTICS
           </li>

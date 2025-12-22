@@ -28,6 +28,21 @@ const App = () => {
     if (mainRef.current) {
       mainRef.current.scrollTo(0, 0);
     }
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const titles = {
+      "/": "Math Trail | Practice & Progress",
+      "/basic": "Basic Math | Math Trail",
+      "/decimal": "Decimal | Math Trail",
+      "/fraction": "Fraction | Math Trail",
+      "/geometry": "Geometry | Math Trail",
+      "/statistics": "Statistics | Math Trail",
+      "/privacy": "Privacy Policy | Math Trail",
+    };
+
+    document.title = titles[location.pathname] || "Math Trail";
   }, [location.pathname]);
 
   return (
@@ -38,11 +53,15 @@ const App = () => {
         <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/basic" element={<Basic />} />
-            <Route path="/decimal" element={<Decimal />} />
-            <Route path="/fraction" element={<Fraction />} />
-            <Route path="/geometry" element={<Geometry />} />
-            <Route path="/statistics" element={<Statistics />} />
+            {/* practice 페이지들 */}
+            <Route path="/practice">
+              <Route path="basic" element={<Basic />} />
+              <Route path="decimal" element={<Decimal />} />
+              <Route path="fraction" element={<Fraction />} />
+              <Route path="geometry" element={<Geometry />} />
+              <Route path="statistics" element={<Statistics />} />
+            </Route>
+            {/* 정보페이지들 */}
             <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
