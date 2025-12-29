@@ -12,6 +12,8 @@ const Fraction = lazy(() => import("./pages/Fraction"));
 const Geometry = lazy(() => import("./pages/Geometry"));
 const Statistics = lazy(() => import("./pages/Statistics"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const About = lazy(() => import("./pages/About"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Loading component
@@ -31,6 +33,8 @@ const pageTitles = {
   "/geometry": "Geometry | Math Trail",
   "/statistics": "Statistics | Math Trail",
   "/privacy": "Privacy Policy | Math Trail",
+  "/terms": "Terms | Math Trail",
+  "/About": "About | Math Trail",
 };
 
 const App = () => {
@@ -73,6 +77,8 @@ const App = () => {
             </Route>
             {/* 정보페이지들 */}
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/about" element={<About />} />
 
             {/* 404 Not Found */}
             <Route path="*" element={<NotFound />} />

@@ -1,0 +1,392 @@
+/* ========== 공통 스타일 (Privacy, Terms, About 모두 사용) ========== */
+
+/* 페이지 컨테이너 */
+.info-page {
+  min-height: calc(100vh - var(--header-height));
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: "Jua", sans-serif;
+}
+
+.info-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 60px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 */
+.info-page h1 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 3rem;
+  color: #2d3748;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.last-updated {
+  text-align: center;
+  color: #718096;
+  font-size: 0.95rem;
+  margin: 0 0 3rem 0;
+}
+
+/* 섹션 */
+.info-section {
+  margin-bottom: 3rem;
+}
+
+.info-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.info-section h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.info-section p {
+  line-height: 1.8;
+  color: #4a5568;
+  margin: 0 0 1rem 0;
+}
+
+.info-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* 리스트 스타일 */
+.info-section ul,
+.features-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+.info-section ul li,
+.features-list li {
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  line-height: 1.8;
+  color: #4a5568;
+}
+
+.info-section ul li:last-child,
+.features-list li:last-child {
+  margin-bottom: 0;
+}
+
+.info-section ul li::before,
+.features-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* 중첩 리스트 */
+.info-section ul ul {
+  margin: 0.5rem 0;
+}
+
+.info-section ul ul li {
+  font-size: 0.95rem;
+  padding-left: 1.2rem;
+}
+
+.info-section ul ul li::before {
+  content: "◦";
+  font-size: 1rem;
+}
+
+/* 강조 텍스트 */
+.info-section strong {
+  color: #2d3748;
+  font-weight: 700;
+}
+
+/* 연락처 정보 */
+.contact-info {
+  background: #f7fafc;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.contact-info p {
+  margin: 0.5rem 0;
+  color: #4a5568;
+}
+
+.contact-info p:first-child {
+  margin-top: 0;
+}
+
+.contact-info p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-info a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+  color: var(--color-secondary);
+}
+
+.contact-info a:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ========== About 페이지 전용 스타일 ========== */
+
+.about-hero {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.about-tagline {
+  font-size: 1.5rem;
+  color: #718096;
+  margin-top: 0.5rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.service-card {
+  background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(0, 0, 139, 0.15);
+}
+
+.service-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.service-card h3 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  color: #2d3748;
+  margin: 0.5rem 0;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: #718096;
+  margin: 0;
+}
+
+.about-cta {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  border-radius: 16px;
+  color: white;
+}
+
+.about-cta h2 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 2rem;
+  color: white;
+  border: none;
+  margin: 0 0 1rem 0;
+  padding: 0;
+}
+
+.about-cta p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 2rem 0;
+}
+
+.about-cta .cta-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: white;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.about-cta .cta-button:hover {
+  background: #f0f0f0;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about-cta .cta-button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+/* ========== 모바일 최적화 (768px 이하) ========== */
+@media (max-width: 768px) {
+  .info-page {
+    padding: 40px 16px;
+    min-height: calc(100vh - var(--header-height-mobile));
+  }
+
+  .info-container {
+    padding: 30px 20px;
+  }
+
+  .info-page h1 {
+    font-size: 2rem;
+  }
+
+  .last-updated {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-section {
+    margin-bottom: 2rem;
+  }
+
+  .info-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .info-section p,
+  .info-section ul li {
+    font-size: 0.95rem;
+  }
+
+  .contact-info {
+    padding: 1.25rem;
+  }
+
+  /* About 페이지 모바일 */
+  .about-hero {
+    margin-bottom: 2.5rem;
+  }
+
+  .about-tagline {
+    font-size: 1.2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .service-card {
+    padding: 1.5rem;
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+  }
+
+  .about-cta {
+    padding: 2rem 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .about-cta h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-cta p {
+    font-size: 0.95rem;
+  }
+
+  .about-cta .cta-button {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* ========== 작은 모바일 (480px 이하) ========== */
+@media (max-width: 480px) {
+  .info-page {
+    padding: 30px 12px;
+  }
+
+  .info-container {
+    padding: 20px 16px;
+  }
+
+  .info-page h1 {
+    font-size: 1.75rem;
+  }
+
+  .info-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .info-section p,
+  .info-section ul li {
+    font-size: 0.9rem;
+  }
+
+  .contact-info {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .about-cta {
+    padding: 1.5rem 1rem;
+  }
+
+  .about-cta h2 {
+    font-size: 1.3rem;
+  }
+
+  .about-cta .cta-button {
+    padding: 0.75rem 1.75rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ========== 태블릿 (769px ~ 1024px) ========== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .info-container {
+    padding: 50px 40px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,6 +1,6 @@
 /* ========== Footer 기본 스타일 ========== */
 footer {
-  width: 100%;
+  width: calc(100% - 40px);
   background-color: #2d3748;
   color: white;
   padding: 40px 20px;
@@ -9,11 +9,13 @@ footer {
 
 /* Home 페이지에서만 스냅 섹션으로 동작 */
 footer.page {
+  width: 100%;
   height: calc(100vh - var(--header-height)); /* CSS 변수 사용 */
   scroll-snap-align: start;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 0;
 }
 
 .footer-content {
