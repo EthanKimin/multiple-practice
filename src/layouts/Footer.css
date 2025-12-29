@@ -1,33 +1,176 @@
+/* ========== Footer 기본 스타일 ========== */
 footer {
   width: 100%;
-  background-color: #333;
+  background-color: #2d3748;
   color: white;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
-}
-.footer-content {
-  width: 100%;
-}
-.footer-content__copyright {
-  font-size: 20px;
-}
-.footer-content__ask {
-  font-size: 20px;
-  margin-top: 20px;
-}
-.footer-content__nav {
-  margin-top: 20px;
-}
-a {
-  color: rgb(146, 203, 252);
+  padding: 40px 20px;
+  font-family: "Jua", sans-serif;
 }
 
-.footer-content__nav ul li:hover {
-  background-color: dimgray;
+/* Home 페이지에서만 스냅 섹션으로 동작 */
+footer.page {
+  height: calc(100vh - var(--header-height)); /* CSS 변수 사용 */
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.footer-content__nav ul li:active {
-  background-color: darkgrey;
+
+.footer-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ========== Copyright ========== */
+.footer-content__copyright {
+  font-family: "Fredoka", sans-serif;
+  font-size: 16px;
+  margin: 0 0 16px 0;
+  color: #e2e8f0;
+}
+
+/* ========== Contact Email ========== */
+.footer-content__contact {
+  font-size: 16px;
+  margin: 16px 0;
+  color: #cbd5e0;
+}
+
+.footer-content__email {
+  color: #90cdf4;
+  text-decoration: none;
+  transition: color var(--transition-normal);
+  font-weight: 600;
+}
+
+.footer-content__email:hover {
+  color: #63b3ed;
+  text-decoration: underline;
+}
+
+.footer-content__email:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ========== Navigation ========== */
+.footer-content__nav {
+  margin-top: 24px;
+}
+
+.footer-content__nav-list {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-content__nav-item {
+  margin: 0;
+}
+
+.footer-content__nav-link {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all var(--transition-normal);
+  display: inline-block;
+}
+
+.footer-content__nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.footer-content__nav-link:active {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(0.98);
+}
+
+.footer-content__nav-link:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ========== 모바일 최적화 (768px 이하) ========== */
+@media (max-width: 768px) {
+  footer {
+    padding: 32px 16px;
+  }
+
+  footer.page {
+    height: auto;
+    min-height: calc(100vh - var(--header-height-mobile));
+  }
+
+  .footer-content__copyright {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .footer-content__contact {
+    font-size: 14px;
+    margin: 12px 0;
+  }
+
+  .footer-content__email {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .footer-content__nav {
+    margin-top: 20px;
+  }
+
+  .footer-content__nav-list {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .footer-content__nav-link {
+    font-size: 14px;
+    padding: 10px 20px;
+    width: 200px;
+    text-align: center;
+    min-height: 44px; /* 터치 친화적 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ========== 작은 모바일 (480px 이하) ========== */
+@media (max-width: 480px) {
+  footer {
+    padding: 24px 12px;
+  }
+
+  .footer-content__copyright {
+    font-size: 13px;
+  }
+
+  .footer-content__contact {
+    font-size: 13px;
+  }
+
+  .footer-content__nav-link {
+    font-size: 13px;
+    width: 180px;
+  }
+}
+
+/* ========== 태블릿 (769px ~ 1024px) ========== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-content__nav-list {
+    gap: 20px;
+  }
 }

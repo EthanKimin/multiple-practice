@@ -1,23 +1,43 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Footer.css";
+
 const Footer = () => {
-  const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
+  // 푸터 링크 데이터
+  const footerLinks = [
+    { path: "/privacy", label: "개인정보처리방침" },
+    { path: "/terms", label: "이용약관" },
+    { path: "/about", label: "사이트 소개" },
+  ];
+
   return (
-    // footer 태그에 'page' 클래스를 추가하여 Home 화면에서 스내핑 섹션으로 사용
-    <footer className="page">
+    <footer className={isHomePage ? "page" : ""}>
       <div className="footer-content">
         <p className="footer-content__copyright">
           &copy; {new Date().getFullYear()} Math Trail. All rights reserved.
         </p>
-        <p className="footer-content__ask">
+
+        <p className="footer-content__contact">
           학습 문의:{" "}
-          <a href="mailto:rlagmlruadle@icloud.com">rlagmlruadle@icloud.com</a>
+          <a
+            href="mailto:rlagmlruadle@icloud.com"
+            className="footer-content__email"
+          >
+            rlagmlruadle@icloud.com
+          </a>
         </p>
-        <nav className="footer-content__nav">
-          <ul>
-            <li onClick={() => navigate("/privacy")}>개인정보처리방침</li>
-            <li onClick={() => navigate("/terms")}>이용약관</li>
-            <li onClick={() => navigate("/about")}>사이트 소개</li>
+
+        <nav className="footer-content__nav" aria-label="푸터 메뉴">
+          <ul className="footer-content__nav-list">
+            {footerLinks.map((link) => (
+              <li key={link.path} className="footer-content__nav-item">
+                <Link to={link.path} className="footer-content__nav-link">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
