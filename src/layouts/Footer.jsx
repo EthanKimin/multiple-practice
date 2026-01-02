@@ -7,9 +7,9 @@ const Footer = () => {
 
   // 푸터 링크 데이터
   const footerLinks = [
-    { path: "/privacy", label: "개인정보처리방침" },
-    { path: "/terms", label: "이용약관" },
-    { path: "/about", label: "사이트 소개" },
+    { path: "/info/privacy", label: "개인정보처리방침" },
+    { path: "/info/terms", label: "이용약관" },
+    { path: "/info/about", label: "사이트 소개" },
   ];
 
   return (

@@ -2,7 +2,6 @@ import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useRef, lazy, Suspense } from "react";
 import Header from "./layouts/Header.jsx";
-import Footer from "./layouts/Footer.jsx";
 
 // Lazy load pages for better performance
 const Home = lazy(() => import("./pages/Home"));
@@ -15,6 +14,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const About = lazy(() => import("./pages/About"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Footer = lazy(() => import("./layouts/Footer.jsx")); // footer가 첫화면 나오는 것 방지
 
 // Loading component
 const LoadingSpinner = () => (
@@ -27,11 +27,11 @@ const LoadingSpinner = () => (
 // Page titles mapping
 const pageTitles = {
   "/": "Math Trail | Practice & Progress",
-  "/basic": "Basic Math | Math Trail",
-  "/decimal": "Decimal | Math Trail",
-  "/fraction": "Fraction | Math Trail",
-  "/geometry": "Geometry | Math Trail",
-  "/statistics": "Statistics | Math Trail",
+  "/practice/basic": "Basic Math | Math Trail",
+  "/practice/decimal": "Decimal | Math Trail",
+  "/practice/fraction": "Fraction | Math Trail",
+  "/practice/geometry": "Geometry | Math Trail",
+  "/practice/statistics": "Statistics | Math Trail",
   "/privacy": "Privacy Policy | Math Trail",
   "/terms": "Terms | Math Trail",
   "/About": "About | Math Trail",
@@ -76,9 +76,11 @@ const App = () => {
               <Route path="statistics" element={<Statistics />} />
             </Route>
             {/* 정보페이지들 */}
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/info">
+              <Route path="privacy" element={<Privacy />} />
+              <Route path="terms" element={<Terms />} />
+              <Route path="about" element={<About />} />
+            </Route>
 
             {/* 404 Not Found */}
             <Route path="*" element={<NotFound />} />
