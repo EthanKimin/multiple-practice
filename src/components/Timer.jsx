@@ -5,29 +5,42 @@ const Timer = ({ isRunning, onTimeChange }) => {
   const [second, setSecond] = useState(0);
   const intervalRef = useRef(null);
 
-  // 1. 타이머 숫자 증가 로직
+  // 타이머 로직
   useEffect(() => {
     if (isRunning) {
+      // 시작할 때 0으로 초기화
+      setSecond(0);
+
       intervalRef.current = setInterval(() => {
-        setSecond((prev) => prev + 1);
+        setSecond((prev) => {
+          const newSecond = prev + 1;
+          // 상태 업데이트와 동시에 부모에게 알림
+          onTimeChange?.(newSecond);
+          return newSecond;
+        });
       }, 1000);
     } else {
-      clearInterval(intervalRef.current);
+      // 정지할 때 interval 정리
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     }
 
-    return () => clearInterval(intervalRef.current);
-  }, [isRunning]);
-
-  // 2. 상태 변경 후 부모에게 알림
-  useEffect(() => {
-    if (second > 0) {
-      onTimeChange?.(second);
-    }
-  }, [second, onTimeChange]);
+    // cleanup
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isRunning, onTimeChange]);
 
   return (
-    <div className="body__content__first__timer">
-      <div className="body__content__first__timer__second">{second}초</div>
+    <div className="timer">
+      <div className="timer__display">
+        <span className="timer__value">{second}</span>
+        <span className="timer__unit">초</span>
+      </div>
     </div>
   );
 };

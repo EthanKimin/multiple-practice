@@ -16,7 +16,7 @@ const Header = () => {
   ];
 
   return (
-    <header>
+    <header className="main-header">
       {/* 로고 영역 */}
       <div
         className="header__logo"

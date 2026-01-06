@@ -1,5 +1,5 @@
 import Placeholder from "../components/Placeholder";
-import "./shared-page-style.css";
+import "./PracticePages.css";
 
 const Geometry = () => {
   return (

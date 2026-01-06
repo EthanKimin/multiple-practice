@@ -1,7 +1,7 @@
 import useTestLogic from "../hooks/useTestLogic";
 import { BasicAndDecimalTest } from "../components/TestComponent";
 import TestLayout from "../layouts/TestLayout";
-import "./shared-page-style.css";
+import "./PracticePages.css";
 import Placeholder from "../components/Placeholder";
 
 const Decimal = () => {

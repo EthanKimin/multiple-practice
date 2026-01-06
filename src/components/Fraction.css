@@ -1,0 +1,146 @@
+/* ========== 분수 공통 스타일 ========== */
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  gap: 2px;
+}
+
+.fraction__line {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  margin: 2px 0;
+}
+
+.fraction__numerator,
+.fraction__denominator {
+  text-align: center;
+  line-height: 1;
+}
+
+/* ========== 분수 표시 (FractionView) ========== */
+.fraction--view {
+  min-width: 40px;
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+}
+
+.fraction--view .fraction__numerator,
+.fraction--view .fraction__denominator {
+  padding: 2px 8px;
+}
+
+/* ========== 분수 입력 (FractionInput) ========== */
+.fraction--input {
+  min-width: 60px;
+  position: relative;
+}
+
+.fraction__input {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  width: 60px;
+  padding: 4px 8px;
+  border: 2px solid #cbd5e0;
+  border-radius: 6px;
+  text-align: center;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.fraction__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 139, 0.1);
+}
+
+.fraction__input::placeholder {
+  color: #a0aec0;
+  font-size: 0.875rem;
+}
+
+/* 정답 상태 */
+.fraction--input.correct .fraction__input {
+  border-color: #10b981;
+  background: #f0fdf4;
+  color: #065f46;
+}
+
+.fraction--input.correct .fraction__line {
+  background-color: #10b981;
+}
+
+/* 오답 상태 */
+.fraction--input.incorrect .fraction__input {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.fraction--input.incorrect .fraction__line {
+  background-color: #ef4444;
+}
+
+/* ========== 모바일 최적화 (768px 이하) ========== */
+@media (max-width: 768px) {
+  .fraction {
+    gap: 1px;
+  }
+
+  .fraction--view {
+    min-width: 36px;
+    font-size: 1.125rem;
+  }
+
+  .fraction--view .fraction__numerator,
+  .fraction--view .fraction__denominator {
+    padding: 2px 6px;
+  }
+
+  .fraction--input {
+    min-width: 54px;
+  }
+
+  .fraction__input {
+    font-size: 1.125rem;
+    width: 54px;
+    padding: 4px 6px;
+  }
+
+  .fraction__line {
+    height: 1.5px;
+  }
+}
+
+/* ========== 작은 모바일 (480px 이하) ========== */
+@media (max-width: 480px) {
+  .fraction--view {
+    min-width: 32px;
+    font-size: 1rem;
+  }
+
+  .fraction--view .fraction__numerator,
+  .fraction--view .fraction__denominator {
+    padding: 2px 4px;
+  }
+
+  .fraction--input {
+    min-width: 48px;
+  }
+
+  .fraction__input {
+    font-size: 1rem;
+    width: 48px;
+    padding: 3px 4px;
+  }
+
+  .fraction__input::placeholder {
+    font-size: 0.75rem;
+  }
+}

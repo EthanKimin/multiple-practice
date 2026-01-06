@@ -1,0 +1,101 @@
+/* ========== Practice Page 레이아웃 ========== */
+.practice-page {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+}
+
+/* ========== Test Container ========== */
+.test-container {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+  margin-left: var(--sidebar-width);
+}
+
+.test-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.test-container::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 4px;
+}
+
+.test-container::-webkit-scrollbar-track {
+  background: #f1f3f5;
+}
+
+/* ========== Test Header ========== */
+.test-header {
+  padding: 2rem 2rem 1rem;
+  background: white;
+  border-bottom: 2px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.test-title {
+  font-family: "Jua", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+/* ========== Test Content ========== */
+.test-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.test__title {
+  font-family: "Jua", sans-serif;
+  color: var(--color-primary);
+}
+
+/* ========== 모바일 최적화 (768px 이하) ========== */
+@media (max-width: 768px) {
+  .practice-page {
+    height: calc(100vh - var(--header-height-mobile));
+  }
+
+  .test-container {
+    /* 사이드바 토글 버튼 공간 확보 (50px) */
+    margin-left: 0;
+  }
+
+  .test-header {
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .test-title {
+    font-size: 1.75rem;
+  }
+
+  .test-content {
+    padding: 1rem;
+  }
+}
+
+/* ========== 작은 모바일 (480px 이하) ========== */
+@media (max-width: 480px) {
+  .test-header {
+    padding: 1rem 0.75rem 0.75rem;
+  }
+
+  .test-title {
+    font-size: 1.5rem;
+  }
+
+  .test-content {
+    padding: 0.75rem;
+  }
+}

@@ -1,15 +1,15 @@
 import useTestLogic from "../hooks/useTestLogic";
 import { BasicAndDecimalTest } from "../components/TestComponent";
 import TestLayout from "../layouts/TestLayout";
-import "./shared-page-style.css";
+import "./PracticePages.css";
 import Placeholder from "../components/Placeholder";
 
 const Basic = () => {
   const menuItems = [
-    { id: "plus", title: "덧셈연습", maxNum: 9 },
-    { id: "multiple", title: "곱셈연습", maxNum: 9 },
-    { id: "minus", title: "뺄셈연습", maxNum: 9 },
-    { id: "division", title: "나눗셈연습", maxNum: 9 },
+    { id: "plus", title: "덧셈연습", maxNum: 9, icon: "➕" },
+    { id: "multiple", title: "곱셈연습", maxNum: 9, icon: "✖️" },
+    { id: "minus", title: "뺄셈연습", maxNum: 9, icon: "➖" },
+    { id: "division", title: "나눗셈연습", maxNum: 9, icon: "➗" },
   ];
   const { selectedType, selectedItem, handleMenuClick } =
     useTestLogic(menuItems);

@@ -1,0 +1,143 @@
+/* ========== Placeholder 스타일 ========== */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 3rem 2rem;
+  text-align: center;
+  font-family: "Jua", sans-serif;
+  color: var(--color-text-secondary);
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.placeholder__icon {
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.placeholder__title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.placeholder__message {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 2rem 0;
+  max-width: 400px;
+}
+
+.placeholder__arrow {
+  font-size: 3rem;
+  color: var(--color-primary);
+  animation: slide 1.5s ease-in-out infinite;
+}
+
+@keyframes slide {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-20px);
+    opacity: 0.5;
+  }
+}
+
+/* ========== 모바일 최적화 (768px 이하) ========== */
+@media (max-width: 768px) {
+  .placeholder {
+    min-height: 300px;
+    padding: 2rem 1rem;
+  }
+
+  .placeholder__icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .placeholder__title {
+    font-size: 1.5rem;
+  }
+
+  .placeholder__message {
+    font-size: 1.125rem;
+  }
+
+  .placeholder__arrow {
+    font-size: 2.5rem;
+  }
+
+  /* 모바일에서는 위쪽 화살표 */
+  .placeholder__arrow::before {
+    content: "↑";
+  }
+
+  .placeholder__arrow {
+    animation: slideUp 1.5s ease-in-out infinite;
+  }
+
+  @keyframes slideUp {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-20px);
+      opacity: 0.5;
+    }
+  }
+}
+
+/* ========== 작은 모바일 (480px 이하) ========== */
+@media (max-width: 480px) {
+  .placeholder {
+    min-height: 250px;
+    padding: 1.5rem 1rem;
+  }
+
+  .placeholder__icon {
+    font-size: 3rem;
+  }
+
+  .placeholder__title {
+    font-size: 1.25rem;
+  }
+
+  .placeholder__message {
+    font-size: 1rem;
+  }
+
+  .placeholder__arrow {
+    font-size: 2rem;
+  }
+}

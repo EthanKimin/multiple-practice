@@ -1,105 +1,212 @@
+/* ========== Test Component 기본 스타일 ========== */
 .test {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
   font-family: "Jua", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  margin: 10px;
-  width: 95%;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 20px;
-  background-color: aliceblue;
-  padding: 20px 0 20px 0;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px rgb(133, 133, 133);
-}
-.test__title {
-  font-size: 40px;
-  padding: 10px;
-  color: darkblue;
-}
-.test__content {
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.test__content__first {
-  margin-top: 10px;
-  display: flex;
-}
-.test__content__first__strtBtn {
-  margin-right: 15px;
-}
-.test__content__first__timer {
-  margin-left: 20px;
-  width: 100px;
-  text-align: right;
 }
 
-.test__content__test {
-  padding: 30px 10px;
-}
-.problem {
-  margin: 7px;
-}
-.answer {
-  border: 1px white solid;
-  width: 60px;
-  height: 30px;
-  font: inherit;
-}
-.answer.correct {
-  background-color: #e8f5e9; /* 연한 초록색 배경 */
-  border-color: #4caf50; /* 초록색 테두리 */
-}
-
-.answer.incorrect {
-  background-color: #ffcdd2; /* 연한 빨간색 배경 */
-  border-color: #f44336; /* 빨간색 테두리 */
-}
-
-/* button {
-  cursor: pointer;
-  border: none;
-  font-family: "Jua", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  color: white;
-  background-color: black;
-  font-size: 15px;
-  width: 70px;
-  height: 25px;
-  border-radius: 12px;
-  box-shadow: 2px 2px 2px rgb(133, 133, 133);
-}
-button:active {
-  transform: translateY(2px);
-  box-shadow: 1px 1px 1px rgb(100, 100, 100);
-  background-color: #333; /* 조금 더 어둡게 */
-/* } */
-
-.test:last-child {
-  margin-bottom: 150px;
-}
-
-/* 분수표시 */
-.fraction {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 6px;
-}
-
-.fraction__top,
-.fraction__bottom {
-  width: 32px;
+.test__header {
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-.fraction__bar {
+.test__title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 2rem;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.test__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ========== 컨트롤 영역 ========== */
+.test__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.test__button {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.test__button--start {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.test__button--start:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.test__button--reset {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.test__button--reset:hover {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.test__button--submit {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
   width: 100%;
-  border-top: 2px solid #000;
-  margin: 2px 0;
+  max-width: 300px;
+  margin: 0 auto;
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+}
+
+.test__button--submit:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+}
+
+.test__button:active {
+  transform: translateY(0);
+}
+
+.test__button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ========== 타이머 ========== */
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer__display {
+  font-family: "Fredoka", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding: 0.5rem 1.5rem;
+  background: #f0f9ff;
+  border-radius: 12px;
+  border: 2px solid #bae6fd;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.timer__value {
+  font-size: 2.5rem;
+  color: #0284c7;
+  min-width: 3ch;
+  text-align: right;
+}
+
+.timer__unit {
+  font-size: 1.25rem;
+  color: #0ea5e9;
+}
+
+/* ========== 문제 영역 ========== */
+.test__problems {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== 모바일 최적화 (768px 이하) ========== */
+@media (max-width: 768px) {
+  .test {
+    padding: 1rem;
+  }
+
+  .test__title {
+    font-size: 1.5rem;
+  }
+
+  .test__controls {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .test__button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .timer__display {
+    font-size: 1.5rem;
+  }
+
+  .timer__value {
+    font-size: 2rem;
+  }
+
+  .timer__unit {
+    font-size: 1rem;
+  }
+
+  .test__problems {
+    padding: 1rem;
+  }
+}
+
+/* ========== 작은 모바일 (480px 이하) ========== */
+@media (max-width: 480px) {
+  .test {
+    padding: 0.75rem;
+  }
+
+  .test__title {
+    font-size: 1.25rem;
+  }
+
+  .test__button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .test__button--submit {
+    font-size: 1.125rem;
+  }
+
+  .timer__display {
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .timer__value {
+    font-size: 1.75rem;
+  }
+
+  .timer__unit {
+    font-size: 0.875rem;
+  }
 }

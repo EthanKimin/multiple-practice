@@ -4,6 +4,10 @@
   --header-height: 125px;
   --header-height-mobile: 70px;
 
+  /* Sidebar Width */
+  --sidebar-width: 300px;
+  --sidebar-width-mobile: 50px;
+
   /* Brand Colors */
   --color-primary: #00008b;
   --color-secondary: #8b0000;
@@ -13,12 +17,18 @@
   --color-text-primary: #2d3748;
   --color-text-secondary: #718096;
 
+  /* Success/Error Colors */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+
   /* Transitions */
+  --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
 
 /* ========== Main Layout ========== */
-main {
+.main-content {
   margin-top: var(--header-height);
 }
 
@@ -72,7 +82,7 @@ main {
 
 /* ========== 모바일 최적화 ========== */
 @media (max-width: 768px) {
-  main {
+  .main-content {
     margin-top: var(--header-height-mobile);
   }
 

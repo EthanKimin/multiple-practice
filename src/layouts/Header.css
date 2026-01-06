@@ -1,5 +1,5 @@
 /* ========== Header 기본 스타일 ========== */
-header {
+.main-header {
   position: fixed;
   top: 0;
   left: 0;
