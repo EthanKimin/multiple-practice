@@ -69,7 +69,7 @@
 
   .test-container {
     /* 사이드바 토글 버튼 공간 확보 (50px) */
-    margin-left: 0;
+    margin-left: 50px;
   }
 
   .test-header {
