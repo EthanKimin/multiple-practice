@@ -3,12 +3,12 @@
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem;
   font-family: "Jua", sans-serif;
 }
 
 .test__header {
   margin-bottom: 2rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -25,7 +25,7 @@
   gap: 2rem;
 }
 
-/* ========== 컨트롤 영역 ========== */
+/* ========== 컨트롤 영역 (시작/리셋 + 타이머) ========== */
 .test__controls {
   display: flex;
   align-items: center;
@@ -37,6 +37,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* ========== 버튼 스타일 ========== */
 .test__button {
   font-family: "Fredoka", sans-serif;
   font-size: 1.1rem;
@@ -45,46 +46,12 @@
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.test__button--start {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-}
-
-.test__button--start:hover {
-  background: linear-gradient(135deg, #059669, #047857);
+.test__button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-}
-
-.test__button--reset {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: white;
-}
-
-.test__button--reset:hover {
-  background: linear-gradient(135deg, #d97706, #b45309);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-}
-
-.test__button--submit {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: white;
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
-  font-size: 1.25rem;
-  padding: 1rem 2rem;
-}
-
-.test__button--submit:hover {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
 }
 
 .test__button:active {
@@ -94,6 +61,43 @@
 .test__button:focus-visible {
   outline: 3px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* 시작 버튼 */
+.test__button--start {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.test__button--start:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* 리셋 버튼 */
+.test__button--reset {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.test__button--reset:hover {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+/* 제출 버튼 */
+.test__button--submit {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.test__button--submit:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
 }
 
 /* ========== 타이머 ========== */
@@ -140,14 +144,42 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* ========== 제출 버튼 컨테이너 ========== */
+.test__submit-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ========== 모바일 최적화 (768px 이하) ========== */
 @media (max-width: 768px) {
   .test {
-    padding: 1rem;
+    padding: 0;
+  }
+
+  .test__header {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
   }
 
   .test__title {
     font-size: 1.5rem;
+  }
+
+  .test__content {
+    gap: 1rem;
   }
 
   .test__controls {
@@ -159,10 +191,16 @@
   .test__button {
     width: 100%;
     max-width: 300px;
+    font-size: 1rem;
+  }
+
+  .test__button--submit {
+    font-size: 1.125rem;
   }
 
   .timer__display {
     font-size: 1.5rem;
+    padding: 0.5rem 1rem;
   }
 
   .timer__value {
@@ -176,25 +214,26 @@
   .test__problems {
     padding: 1rem;
   }
+
+  .test__submit-container {
+    padding: 0.5rem;
+  }
 }
 
 /* ========== 작은 모바일 (480px 이하) ========== */
 @media (max-width: 480px) {
-  .test {
-    padding: 0.75rem;
-  }
-
   .test__title {
     font-size: 1.25rem;
   }
 
   .test__button {
-    font-size: 1rem;
+    font-size: 0.95rem;
     padding: 0.75rem 1.5rem;
   }
 
   .test__button--submit {
-    font-size: 1.125rem;
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
   }
 
   .timer__display {
@@ -208,5 +247,9 @@
 
   .timer__unit {
     font-size: 0.875rem;
+  }
+
+  .test__problems {
+    padding: 0.75rem;
   }
 }

@@ -1,0 +1,63 @@
+/* ========== 타이머 ========== */
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer__display {
+  font-family: "Fredoka", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding: 0.5rem 1.5rem;
+  background: #f0f9ff;
+  border-radius: 12px;
+  border: 2px solid #bae6fd;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.timer__value {
+  font-size: 2.5rem;
+  color: #0284c7;
+  min-width: 3ch;
+  text-align: right;
+}
+
+.timer__unit {
+  font-size: 1.25rem;
+  color: #0ea5e9;
+}
+
+/* ========== 모바일 최적화 (768px 이하) ========== */
+@media (max-width: 768px) {
+  .timer__display {
+    font-size: 1.5rem;
+  }
+
+  .timer__value {
+    font-size: 2rem;
+  }
+
+  .timer__unit {
+    font-size: 1rem;
+  }
+}
+
+/* ========== 작은 모바일 (480px 이하) ========== */
+@media (max-width: 480px) {
+  .timer__display {
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .timer__value {
+    font-size: 1.75rem;
+  }
+
+  .timer__unit {
+    font-size: 0.875rem;
+  }
+}

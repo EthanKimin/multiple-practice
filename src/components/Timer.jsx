@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import "./Timer.css";
 
 // eslint-disable-next-line react/prop-types
 const Timer = ({ isRunning, onTimeChange }) => {
