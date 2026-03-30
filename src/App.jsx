@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useRef, lazy, Suspense } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import Header from "./layouts/Header.jsx";
 
 // Lazy load pages for better performance
@@ -32,38 +32,24 @@ const pageTitles = {
   "/practice/fraction": "Fraction | Math Trail",
   "/practice/geometry": "Geometry | Math Trail",
   "/practice/statistics": "Statistics | Math Trail",
-  "/privacy": "Privacy Policy | Math Trail",
-  "/terms": "Terms | Math Trail",
-  "/About": "About | Math Trail",
+  "/info/privacy": "Privacy Policy | Math Trail",
+  "/info/terms": "Terms | Math Trail",
+  "/info/about": "About | Math Trail",
 };
 
 const App = () => {
-  const mainRef = useRef(null);
   const location = useLocation();
 
   // Handle scroll restoration and page title
   useEffect(() => {
-    // Scroll to top on route change
-    if (mainRef.current) {
-      mainRef.current.scrollTo(0, 0);
-    }
     window.scrollTo(0, 0);
-
-    // Update page title
     document.title = pageTitles[location.pathname] || "Math Trail";
-
-    // Google Analytics pageview tracking (optional)
-    if (window.gtag) {
-      window.gtag("config", "YOUR-GA-ID", {
-        page_path: location.pathname,
-      });
-    }
   }, [location.pathname]);
 
   return (
     <>
       <Header />
-      <main ref={mainRef} className="main-content-snapping-area">
+      <main className="main-content main-content-snapping-area">
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route path="/" element={<Home />} />

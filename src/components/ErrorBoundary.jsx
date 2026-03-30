@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React from "react";
 import "./ErrorBoundary.css";
 
@@ -55,7 +54,7 @@ class ErrorBoundary extends React.Component {
             </div>
 
             {/* 개발 모드에서만 에러 상세 정보 표시 */}
-            {process.env.NODE_ENV === "development" && this.state.error && (
+            {import.meta.env.DEV && this.state.error && (
               <details className="error-details">
                 <summary className="error-summary">
                   에러 상세 정보 (개발 모드)

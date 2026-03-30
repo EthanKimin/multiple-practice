@@ -41,7 +41,7 @@ const Home = () => {
       title: "통계",
       icon: "📊",
       description: "데이터 분석의 기초를 배웁니다",
-      link: "/practice/statistics", // ✅ 오타 수정
+      link: "/practice/statistics",
     },
   ];
 
@@ -66,7 +66,6 @@ const Home = () => {
         {/* CTA Button */}
         <div className="welcome__cta">
           <Link to="/practice/basic" className="cta-button cta-button--primary">
-            {/* ✅ 슬래시 추가 */}
             지금 시작하기
           </Link>
           <a href="#features" className="cta-button cta-button--secondary">
@@ -125,8 +124,8 @@ const Home = () => {
         </div>
 
         <div className="categories__grid">
-          {categories.map((category, index) => (
-            <CategoryCard key={index} {...category} />
+          {categories.map((category) => (
+            <CategoryCard key={category.title} {...category} />
           ))}
         </div>
       </section>

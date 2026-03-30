@@ -6,10 +6,10 @@ import Placeholder from "../components/Placeholder";
 
 const Decimal = () => {
   const menuItems = [
-    { id: "decimalFirstPlus", title: "한자리수 소수의 덧셈", maxNum: 99 },
-    { id: "decimalFirstMinus", title: "한자리수 소수의 뺄셈", maxNum: 99 },
-    { id: "decimalSecondPlus", title: "두자리수 소수의 덧셈", maxNum: 999 },
-    { id: "decimalSecondMinus", title: "두자리수 소수의 뺄셈", maxNum: 999 },
+    { id: "decimalFirstPlus", title: "한자리수 소수의 덧셈", maxNum: 9 },
+    { id: "decimalFirstMinus", title: "한자리수 소수의 뺄셈", maxNum: 9 },
+    { id: "decimalSecondPlus", title: "두자리수 소수의 덧셈", maxNum: 9 },
+    { id: "decimalSecondMinus", title: "두자리수 소수의 뺄셈", maxNum: 9 },
   ];
   const { selectedType, selectedItem, handleMenuClick } =
     useTestLogic(menuItems);
