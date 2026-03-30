@@ -34,6 +34,18 @@ const addFraction = (a, b) =>
   });
 
 /**
+ * 분수 뺄셈
+ * @param {Object} a - { n: 분자, d: 분모 }
+ * @param {Object} b - { n: 분자, d: 분모 }
+ * @returns {Object} 결과 분수
+ */
+const subFraction = (a, b) =>
+  simplify({
+    n: a.n * b.d - b.n * a.d,
+    d: a.d * b.d,
+  });
+
+/**
  * 두 분수가 같은지 비교 (약분하여 비교)
  * @param {Object} a
  * @param {Object} b
@@ -171,13 +183,59 @@ const problemGenerators = {
    * 분수 덧셈 (같은 분모)
    */
   fractionPlusSimple: (maxNum) => {
-    const d = randomRange(2, 10); // 분모는 2~10
+    const d = randomRange(2, 10);
     const a = { n: randomInt(maxNum), d };
     const b = { n: randomInt(maxNum), d };
-
     return {
       display: { a, b, op: "+" },
       correct: addFraction(a, b),
+    };
+  },
+
+  /**
+   * 분수 뺄셈 (같은 분모, 결과 양수 보장)
+   */
+  fractionMinusSimple: (maxNum) => {
+    const d = randomRange(2, 10);
+    const b = randomInt(maxNum);
+    const a = b + randomInt(maxNum); // a > b 보장
+    return {
+      display: { a: { n: a, d }, b: { n: b, d }, op: "-" },
+      correct: simplify({ n: a - b, d }),
+    };
+  },
+
+  /**
+   * 분수 덧셈 (다른 분모)
+   */
+  fractionPlusDiff: (maxNum) => {
+    const d1 = randomRange(2, 6);
+    let d2 = randomRange(2, 6);
+    while (d2 === d1) d2 = randomRange(2, 6);
+    const a = { n: randomInt(maxNum), d: d1 };
+    const b = { n: randomInt(maxNum), d: d2 };
+    return {
+      display: { a, b, op: "+" },
+      correct: addFraction(a, b),
+    };
+  },
+
+  /**
+   * 분수 뺄셈 (다른 분모, 결과 양수 보장)
+   */
+  fractionMinusDiff: (maxNum) => {
+    const d1 = randomRange(2, 6);
+    let d2 = randomRange(2, 6);
+    while (d2 === d1) d2 = randomRange(2, 6);
+    let a = { n: randomInt(maxNum), d: d1 };
+    let b = { n: randomInt(maxNum), d: d2 };
+    // a/d1 >= b/d2 보장 (교차 곱셈으로 비교)
+    if (a.n * b.d < b.n * a.d) {
+      [a, b] = [b, a];
+    }
+    return {
+      display: { a, b, op: "-" },
+      correct: subFraction(a, b),
     };
   },
 };
@@ -193,6 +251,20 @@ const problemGenerators = {
  * @param {number} count - 문제 개수 (기본값: 10)
  * @returns {Array} 문제 배열
  */
+const FRACTION_TYPES = new Set([
+  "fractionPlusSimple",
+  "fractionMinusSimple",
+  "fractionPlusDiff",
+  "fractionMinusDiff",
+]);
+
+/**
+ * 분수 문제 유형 여부 확인
+ * @param {string} type
+ * @returns {boolean}
+ */
+export const isFractionType = (type) => FRACTION_TYPES.has(type);
+
 export const generateProblems = (type, maxNum = 9, count = 10) => {
   const generator = problemGenerators[type] || problemGenerators.plus;
 
@@ -217,7 +289,7 @@ export const generateProblems = (type, maxNum = 9, count = 10) => {
         id: `q${problems.length}`,
         display,
         correctAnswer: correct,
-        userAnswer: type === "fractionPlusSimple" ? { n: "", d: "" } : "",
+        userAnswer: isFractionType(type) ? { n: "", d: "" } : "",
         isCorrect: null,
       });
     }
@@ -246,6 +318,9 @@ export const PROBLEM_TYPES = {
   DECIMAL_SECOND_PLUS: "decimalSecondPlus",
   DECIMAL_SECOND_MINUS: "decimalSecondMinus",
   FRACTION_PLUS_SIMPLE: "fractionPlusSimple",
+  FRACTION_MINUS_SIMPLE: "fractionMinusSimple",
+  FRACTION_PLUS_DIFF: "fractionPlusDiff",
+  FRACTION_MINUS_DIFF: "fractionMinusDiff",
 };
 
 /**
@@ -261,4 +336,7 @@ export const PROBLEM_DESCRIPTIONS = {
   decimalSecondPlus: "소수 둘째 자리 덧셈",
   decimalSecondMinus: "소수 둘째 자리 뺄셈",
   fractionPlusSimple: "같은 분모 분수 덧셈",
+  fractionMinusSimple: "같은 분모 분수 뺄셈",
+  fractionPlusDiff: "다른 분모 분수 덧셈",
+  fractionMinusDiff: "다른 분모 분수 뺄셈",
 };

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { FractionView, FractionInput } from "./Fraction";
+import { isFractionType } from "../utils/problemGenerator";
 import "./ProblemRow.css";
 
 /**
@@ -16,7 +17,7 @@ const ProblemRow = ({ problem, type, onAnswerChange }) => {
     isCorrect === true ? "correct" : isCorrect === false ? "incorrect" : "";
 
   // 분수 문제
-  if (type === "fractionPlusSimple") {
+  if (isFractionType(type)) {
     return (
       <div className="problem problem--fraction">
         <div className="problem__equation">

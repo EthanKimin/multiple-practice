@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import Timer from "./Timer";
 import ProblemRow from "./ProblemRow";
 import "./TestComponent.css";
-import { generateProblems, isSameFraction } from "../utils/problemGenerator";
+import { generateProblems, isSameFraction, isFractionType } from "../utils/problemGenerator";
 
 /**
  * 기본 연산 및 소수 테스트 컴포넌트
@@ -133,7 +133,7 @@ export const BasicAndDecimalTest = ({ title, type, maxNum = 9 }) => {
                 problem={p}
                 type={type}
                 onAnswerChange={(val) =>
-                  type === "fractionPlusSimple"
+                  isFractionType(type)
                     ? handleFractionInput(i, val)
                     : handleInput(i, val)
                 }
