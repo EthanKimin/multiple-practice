@@ -238,6 +238,67 @@ const problemGenerators = {
       correct: subFraction(a, b),
     };
   },
+
+  /**
+   * 직사각형 넓이: 가로 × 세로
+   */
+  rectArea: (maxNum) => {
+    const a = randomInt(maxNum);
+    const b = randomInt(maxNum);
+    return {
+      display: `가로 ${a}, 세로 ${b}인 직사각형의 넓이`,
+      correct: a * b,
+    };
+  },
+
+  /**
+   * 삼각형 넓이: 밑변 × 높이 / 2 (정수 결과 보장)
+   */
+  triangleArea: (maxNum) => {
+    const base = randomInt(maxNum) * 2; // 짝수 보장
+    const h = randomInt(maxNum);
+    return {
+      display: `밑변 ${base}, 높이 ${h}인 삼각형의 넓이`,
+      correct: (base * h) / 2,
+    };
+  },
+
+  /**
+   * 평행사변형 넓이: 밑변 × 높이
+   */
+  parallelogramArea: (maxNum) => {
+    const base = randomInt(maxNum);
+    const h = randomInt(maxNum);
+    return {
+      display: `밑변 ${base}, 높이 ${h}인 평행사변형의 넓이`,
+      correct: base * h,
+    };
+  },
+
+  /**
+   * 사다리꼴 넓이: (윗변 + 아랫변) × 높이 / 2 (정수 결과 보장)
+   */
+  trapezoidArea: (maxNum) => {
+    const top = randomInt(maxNum);
+    const bottom = randomInt(maxNum);
+    const h = randomInt(maxNum) * 2; // 짝수 보장
+    return {
+      display: `윗변 ${top}, 아랫변 ${bottom}, 높이 ${h}인 사다리꼴의 넓이`,
+      correct: ((top + bottom) * h) / 2,
+    };
+  },
+
+  /**
+   * 직사각형 둘레: 2 × (가로 + 세로)
+   */
+  rectPerimeter: (maxNum) => {
+    const a = randomInt(maxNum);
+    const b = randomInt(maxNum);
+    return {
+      display: `가로 ${a}, 세로 ${b}인 직사각형의 둘레`,
+      correct: 2 * (a + b),
+    };
+  },
 };
 
 /* =======================
@@ -251,6 +312,21 @@ const problemGenerators = {
  * @param {number} count - 문제 개수 (기본값: 10)
  * @returns {Array} 문제 배열
  */
+const GEOMETRY_TYPES = new Set([
+  "rectArea",
+  "triangleArea",
+  "parallelogramArea",
+  "trapezoidArea",
+  "rectPerimeter",
+]);
+
+/**
+ * 도형 문제 유형 여부 확인
+ * @param {string} type
+ * @returns {boolean}
+ */
+export const isGeometryType = (type) => GEOMETRY_TYPES.has(type);
+
 const FRACTION_TYPES = new Set([
   "fractionPlusSimple",
   "fractionMinusSimple",
@@ -321,6 +397,11 @@ export const PROBLEM_TYPES = {
   FRACTION_MINUS_SIMPLE: "fractionMinusSimple",
   FRACTION_PLUS_DIFF: "fractionPlusDiff",
   FRACTION_MINUS_DIFF: "fractionMinusDiff",
+  RECT_AREA: "rectArea",
+  TRIANGLE_AREA: "triangleArea",
+  PARALLELOGRAM_AREA: "parallelogramArea",
+  TRAPEZOID_AREA: "trapezoidArea",
+  RECT_PERIMETER: "rectPerimeter",
 };
 
 /**
@@ -339,4 +420,9 @@ export const PROBLEM_DESCRIPTIONS = {
   fractionMinusSimple: "같은 분모 분수 뺄셈",
   fractionPlusDiff: "다른 분모 분수 덧셈",
   fractionMinusDiff: "다른 분모 분수 뺄셈",
+  rectArea: "직사각형의 넓이",
+  triangleArea: "삼각형의 넓이",
+  parallelogramArea: "평행사변형의 넓이",
+  trapezoidArea: "사다리꼴의 넓이",
+  rectPerimeter: "직사각형의 둘레",
 };

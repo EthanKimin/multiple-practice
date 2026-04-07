@@ -122,6 +122,29 @@
   gap: 1.5rem;
 }
 
+/* ========== 도형 문제 스타일 ========== */
+.problem--geometry {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.problem__question {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.problem__answer-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
 /* ========== 모바일 최적화 (768px 이하) ========== */
 @media (max-width: 768px) {
   .problem {
