@@ -120,6 +120,32 @@ const problemGenerators = {
   },
 
   /**
+   * 정수의 덧셈 (-maxNum ~ +maxNum, 0 포함)
+   */
+  integerPlus: (maxNum) => {
+    const sign = (n) => (n >= 0 ? `(+${n})` : `(${n})`);
+    const a = randomRange(-maxNum, maxNum);
+    const b = randomRange(-maxNum, maxNum);
+    return {
+      display: `${sign(a)} + ${sign(b)}`,
+      correct: a + b,
+    };
+  },
+
+  /**
+   * 정수의 뺄셈 (-maxNum ~ +maxNum, 0 포함)
+   */
+  integerMinus: (maxNum) => {
+    const sign = (n) => (n >= 0 ? `(+${n})` : `(${n})`);
+    const a = randomRange(-maxNum, maxNum);
+    const b = randomRange(-maxNum, maxNum);
+    return {
+      display: `${sign(a)} - ${sign(b)}`,
+      correct: a - b,
+    };
+  },
+
+  /**
    * 나눗셈 (나누어떨어지는 문제만)
    */
   division: (maxNum) => {
@@ -389,6 +415,8 @@ export const PROBLEM_TYPES = {
   MINUS: "minus",
   MULTIPLE: "multiple",
   DIVISION: "division",
+  INTEGER_PLUS: "integerPlus",
+  INTEGER_MINUS: "integerMinus",
   DECIMAL_FIRST_PLUS: "decimalFirstPlus",
   DECIMAL_FIRST_MINUS: "decimalFirstMinus",
   DECIMAL_SECOND_PLUS: "decimalSecondPlus",
@@ -410,6 +438,8 @@ export const PROBLEM_TYPES = {
 export const PROBLEM_DESCRIPTIONS = {
   plus: "한 자리 수 덧셈",
   minus: "한 자리 수 뺄셈",
+  integerPlus: "정수의 덧셈",
+  integerMinus: "정수의 뺄셈",
   multiple: "한 자리 수 곱셈",
   division: "한 자리 수 나눗셈",
   decimalFirstPlus: "소수 첫째 자리 덧셈",

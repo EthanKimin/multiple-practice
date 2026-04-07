@@ -34,7 +34,7 @@ export const BasicAndDecimalTest = ({ title, type, maxNum = 9 }) => {
       arr[idx].userAnswer = val;
 
       const correctNum = arr[idx].correctAnswer;
-      if (/^\d*\.?\d*$/.test(val) && val !== "" && val !== ".") {
+      if (/^[+-]?\d+\.?\d*$/.test(val)) {
         arr[idx].isCorrect = Math.abs(parseFloat(val) - correctNum) < 0.0001;
       } else {
         arr[idx].isCorrect = null;

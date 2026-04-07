@@ -10,6 +10,8 @@ const Basic = () => {
     { id: "multiple", title: "곱셈연습", maxNum: 9, icon: "✖️" },
     { id: "minus", title: "뺄셈연습", maxNum: 9, icon: "➖" },
     { id: "division", title: "나눗셈연습", maxNum: 9, icon: "➗" },
+    { id: "integerPlus", title: "정수의 덧셈", maxNum: 10, icon: "🔢" },
+    { id: "integerMinus", title: "정수의 뺄셈", maxNum: 10, icon: "🔣" },
   ];
   const { selectedType, selectedItem, handleMenuClick } =
     useTestLogic(menuItems);
