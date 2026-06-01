@@ -367,6 +367,15 @@ const FRACTION_TYPES = new Set([
  */
 export const isFractionType = (type) => FRACTION_TYPES.has(type);
 
+const INTEGER_TYPES = new Set(["integerPlus", "integerMinus"]);
+
+/**
+ * 정수 문제 유형 여부 확인
+ * @param {string} type
+ * @returns {boolean}
+ */
+export const isIntegerType = (type) => INTEGER_TYPES.has(type);
+
 export const generateProblems = (type, maxNum = 9, count = 10) => {
   const generator = problemGenerators[type] || problemGenerators.plus;
 

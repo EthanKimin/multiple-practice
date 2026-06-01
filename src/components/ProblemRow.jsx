@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { FractionView, FractionInput } from "./Fraction";
-import { isFractionType, isGeometryType } from "../utils/problemGenerator";
+import { isFractionType, isGeometryType, isIntegerType } from "../utils/problemGenerator";
 import "./ProblemRow.css";
 
 /**
@@ -9,6 +9,51 @@ import "./ProblemRow.css";
  * @param {string} type - 문제 유형
  * @param {Function} onAnswerChange - 답안 변경 핸들러
  */
+const IntegerInput = ({ userAnswer, isCorrect, onAnswerChange }) => {
+  const answerClass =
+    isCorrect === true ? "correct" : isCorrect === false ? "incorrect" : "";
+
+  // userAnswer가 "-"로 시작하면 음수, 아니면 양수 부호
+  const isNegative = typeof userAnswer === "string" && userAnswer.startsWith("-");
+  const digits = typeof userAnswer === "string"
+    ? userAnswer.replace(/^[+-]/, "")
+    : "";
+
+  const toggleSign = () => {
+    const newSign = isNegative ? "+" : "-";
+    onAnswerChange(digits !== "" ? `${newSign}${digits}` : newSign);
+  };
+
+  const handleDigits = (e) => {
+    const val = e.target.value.replace(/[^0-9]/g, ""); // 숫자만
+    const sign = isNegative ? "-" : "+";
+    onAnswerChange(val !== "" ? `${sign}${val}` : "");
+  };
+
+  return (
+    <div className="problem__integer-input">
+      <button
+        type="button"
+        className={`problem__sign-btn ${isNegative ? "problem__sign-btn--negative" : "problem__sign-btn--positive"}`}
+        onClick={toggleSign}
+        aria-label="부호 변경"
+      >
+        {isNegative ? "−" : "+"}
+      </button>
+      <input
+        type="text"
+        inputMode="numeric"
+        className={`problem__input ${answerClass}`}
+        value={digits}
+        onChange={handleDigits}
+        placeholder="숫자"
+        autoComplete="off"
+        aria-label="답안 입력"
+      />
+    </div>
+  );
+};
+
 const ProblemRow = ({ problem, type, onAnswerChange }) => {
   const { display, userAnswer, isCorrect } = problem;
 
@@ -31,6 +76,29 @@ const ProblemRow = ({ problem, type, onAnswerChange }) => {
             onChange={onAnswerChange}
           />
         </div>
+      </div>
+    );
+  }
+
+  // 정수 문제 (부호 토글 버튼 + 숫자 입력)
+  if (isIntegerType(type)) {
+    return (
+      <div className="problem problem--basic">
+        <div className="problem__equation">
+          <span className="problem__display">{display}</span>
+          <span className="problem__equals">=</span>
+          <IntegerInput
+            userAnswer={userAnswer}
+            isCorrect={isCorrect}
+            onAnswerChange={onAnswerChange}
+          />
+        </div>
+        {isCorrect === true && (
+          <span className="problem__feedback problem__feedback--correct" aria-label="정답">✓</span>
+        )}
+        {isCorrect === false && (
+          <span className="problem__feedback problem__feedback--incorrect" aria-label="오답">✗</span>
+        )}
       </div>
     );
   }

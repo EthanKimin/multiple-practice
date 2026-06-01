@@ -122,6 +122,52 @@
   gap: 1.5rem;
 }
 
+/* ========== 정수 문제 부호 입력 ========== */
+.problem__integer-input {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.problem__sign-btn {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 44px;
+  height: 44px;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.problem__sign-btn--positive {
+  color: #2563eb;
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
+.problem__sign-btn--positive:hover {
+  background: #dbeafe;
+  border-color: #2563eb;
+}
+
+.problem__sign-btn--negative {
+  color: #dc2626;
+  border-color: #fca5a5;
+  background: #fff5f5;
+}
+
+.problem__sign-btn--negative:hover {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
 /* ========== 도형 문제 스타일 ========== */
 .problem--geometry {
   flex-direction: column;
