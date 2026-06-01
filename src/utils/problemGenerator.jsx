@@ -18,7 +18,10 @@ const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
 const simplify = ({ n, d }) => {
   if (d === 0) return { n: 0, d: 1 }; // 0으로 나누기 방지
   const g = gcd(Math.abs(n), Math.abs(d));
-  return { n: n / g, d: d / g };
+  const sn = n / g;
+  const sd = d / g;
+  // 분모는 항상 양수로 정규화 (부호는 분자로)
+  return sd < 0 ? { n: -sn, d: -sd } : { n: sn, d: sd };
 };
 
 /**
@@ -266,6 +269,62 @@ const problemGenerators = {
   },
 
   /**
+   * 유리수 덧셈: (±a/b) + (±c/d)
+   */
+  rationalPlus: (maxNum) => {
+    const sign = () => (Math.random() < 0.5 ? 1 : -1);
+    const d1 = randomRange(2, maxNum);
+    const d2 = randomRange(2, maxNum);
+    const a = { n: sign() * randomInt(maxNum), d: d1 };
+    const b = { n: sign() * randomInt(maxNum), d: d2 };
+    return {
+      display: { a, b, op: "+" },
+      correct: addFraction(a, b),
+    };
+  },
+
+  /**
+   * 유리수 뺄셈: (±a/b) - (±c/d)
+   */
+  rationalMinus: (maxNum) => {
+    const sign = () => (Math.random() < 0.5 ? 1 : -1);
+    const d1 = randomRange(2, maxNum);
+    const d2 = randomRange(2, maxNum);
+    const a = { n: sign() * randomInt(maxNum), d: d1 };
+    const b = { n: sign() * randomInt(maxNum), d: d2 };
+    return {
+      display: { a, b, op: "-" },
+      correct: subFraction(a, b),
+    };
+  },
+
+  /**
+   * 유리수 곱셈: (±a/b) × (±c/d)
+   */
+  rationalMultiple: (maxNum) => {
+    const sign = () => (Math.random() < 0.5 ? 1 : -1);
+    const a = { n: sign() * randomInt(maxNum), d: randomRange(2, maxNum) };
+    const b = { n: sign() * randomInt(maxNum), d: randomRange(2, maxNum) };
+    return {
+      display: { a, b, op: "×" },
+      correct: simplify({ n: a.n * b.n, d: a.d * b.d }),
+    };
+  },
+
+  /**
+   * 유리수 나눗셈: (±a/b) ÷ (±c/d) → (±a/b) × (±d/c)
+   */
+  rationalDivision: (maxNum) => {
+    const sign = () => (Math.random() < 0.5 ? 1 : -1);
+    const a = { n: sign() * randomInt(maxNum), d: randomRange(2, maxNum) };
+    const b = { n: sign() * randomInt(maxNum), d: randomRange(2, maxNum) };
+    return {
+      display: { a, b, op: "÷" },
+      correct: simplify({ n: a.n * b.d, d: a.d * b.n }),
+    };
+  },
+
+  /**
    * 직사각형 넓이: 가로 × 세로
    */
   rectArea: (maxNum) => {
@@ -325,6 +384,113 @@ const problemGenerators = {
       correct: 2 * (a + b),
     };
   },
+
+  /**
+   * 평균: 정수 데이터 5개, 평균이 소수 첫째 자리 이하로 나오도록
+   */
+  statAverage: (maxNum) => {
+    const count = 5;
+    const data = Array.from({ length: count }, () => randomInt(maxNum));
+    const sum = data.reduce((s, v) => s + v, 0);
+    const avg = Number((sum / count).toFixed(1));
+    const dataStr = data.join(", ");
+    return {
+      display: `자료: ${dataStr}\n이 자료의 평균을 구하세요.`,
+      correct: avg,
+    };
+  },
+
+  /**
+   * 중앙값: 홀수 개(5개) 정수 데이터, 정렬 후 중간값
+   */
+  statMedian: (maxNum) => {
+    const count = 5;
+    const data = Array.from({ length: count }, () => randomInt(maxNum));
+    const sorted = [...data].sort((a, b) => a - b);
+    const median = sorted[Math.floor(count / 2)];
+    const dataStr = data.join(", ");
+    return {
+      display: `자료: ${dataStr}\n이 자료의 중앙값을 구하세요.`,
+      correct: median,
+    };
+  },
+
+  /**
+   * 최빈값: 명확한 최빈값이 하나인 데이터 생성
+   */
+  statMode: (maxNum) => {
+    const mode = randomInt(maxNum);
+    // 최빈값을 2번 포함, 나머지 3개는 mode와 다른 값
+    const others = [];
+    while (others.length < 3) {
+      const v = randomInt(maxNum);
+      if (v !== mode && !others.includes(v)) others.push(v);
+    }
+    const data = [mode, mode, ...others].sort(() => Math.random() - 0.5);
+    const dataStr = data.join(", ");
+    return {
+      display: `자료: ${dataStr}\n이 자료의 최빈값을 구하세요.`,
+      correct: mode,
+    };
+  },
+
+  /**
+   * 범위: 최댓값 - 최솟값
+   */
+  statRange: (maxNum) => {
+    const count = 5;
+    const data = Array.from({ length: count }, () => randomInt(maxNum));
+    const range = Math.max(...data) - Math.min(...data);
+    const dataStr = data.join(", ");
+    return {
+      display: `자료: ${dataStr}\n이 자료의 범위를 구하세요.`,
+      correct: range,
+    };
+  },
+
+  /**
+   * 분배법칙 전개: a(x + b) = ax + ab  (계수 1 고정)
+   */
+  distributiveSimple: (maxNum) => {
+    const a = randomRange(-maxNum, maxNum) || 1; // 0 방지
+    const b = randomRange(-maxNum, maxNum);
+    const aStr = a === 1 ? "" : a === -1 ? "-" : `${a}`;
+    const inner = b >= 0 ? `x + ${b}` : `x - ${Math.abs(b)}`;
+    return {
+      display: `${aStr}(${inner})`,
+      correct: { coeff: a, const: a * b },
+    };
+  },
+
+  /**
+   * 분배법칙 전개: a(bx + c) = abx + ac  (계수 포함)
+   */
+  distributiveCoeff: (maxNum) => {
+    const a = randomRange(-maxNum, maxNum) || 1;
+    const b = randomRange(2, maxNum); // b >= 2 (항상 계수 있음)
+    const c = randomRange(-maxNum, maxNum);
+    const inner = c >= 0 ? `${b}x + ${c}` : `${b}x - ${Math.abs(c)}`;
+    return {
+      display: `${a}(${inner})`,
+      correct: { coeff: a * b, const: a * c },
+    };
+  },
+
+  /**
+   * 분배법칙 역: (abx + ac) ÷ a = bx + c  (다항식 ÷ 단항식)
+   */
+  distributiveDivide: (maxNum) => {
+    const a = randomRange(2, maxNum); // 양수로만 나누기
+    const b = randomRange(1, maxNum);
+    const c = randomRange(-maxNum, maxNum);
+    const ab = a * b;
+    const ac = a * c;
+    const inner = ac >= 0 ? `${ab}x + ${ac}` : `${ab}x - ${Math.abs(ac)}`;
+    return {
+      display: `(${inner}) ÷ ${a}`,
+      correct: { coeff: b, const: c },
+    };
+  },
 };
 
 /* =======================
@@ -376,6 +542,61 @@ const INTEGER_TYPES = new Set(["integerPlus", "integerMinus"]);
  */
 export const isIntegerType = (type) => INTEGER_TYPES.has(type);
 
+const RATIONAL_TYPES = new Set([
+  "rationalPlus",
+  "rationalMinus",
+  "rationalMultiple",
+  "rationalDivision",
+]);
+
+/**
+ * 유리수 문제 유형 여부 확인
+ * @param {string} type
+ * @returns {boolean}
+ */
+export const isRationalType = (type) => RATIONAL_TYPES.has(type);
+
+const ALGEBRA_TYPES = new Set([
+  "distributiveSimple",
+  "distributiveCoeff",
+  "distributiveDivide",
+]);
+
+/**
+ * 대수식(분배법칙) 문제 유형 여부 확인
+ * @param {string} type
+ * @returns {boolean}
+ */
+export const isAlgebraType = (type) => ALGEBRA_TYPES.has(type);
+
+const STATISTICS_TYPES = new Set([
+  "statAverage",
+  "statMedian",
+  "statMode",
+  "statRange",
+]);
+
+/**
+ * 통계 문제 유형 여부 확인
+ * @param {string} type
+ * @returns {boolean}
+ */
+export const isStatisticsType = (type) => STATISTICS_TYPES.has(type);
+
+/**
+ * 대수식 정답 비교: { coeff, const } 두 값이 모두 일치하는지 확인
+ */
+export const isCorrectAlgebra = (userAnswer, correctAnswer) => {
+  const coeff = parseInt(userAnswer?.coeff, 10);
+  const konst = parseInt(userAnswer?.const, 10);
+  return (
+    !isNaN(coeff) &&
+    !isNaN(konst) &&
+    coeff === correctAnswer.coeff &&
+    konst === correctAnswer.const
+  );
+};
+
 export const generateProblems = (type, maxNum = 9, count = 10) => {
   const generator = problemGenerators[type] || problemGenerators.plus;
 
@@ -400,7 +621,11 @@ export const generateProblems = (type, maxNum = 9, count = 10) => {
         id: `q${problems.length}`,
         display,
         correctAnswer: correct,
-        userAnswer: isFractionType(type) ? { n: "", d: "" } : "",
+        userAnswer: isAlgebraType(type)
+          ? { coeff: "", const: "" }
+          : (isFractionType(type) || isRationalType(type))
+            ? { n: "", d: "" }
+            : "",
         isCorrect: null,
       });
     }
@@ -439,6 +664,17 @@ export const PROBLEM_TYPES = {
   PARALLELOGRAM_AREA: "parallelogramArea",
   TRAPEZOID_AREA: "trapezoidArea",
   RECT_PERIMETER: "rectPerimeter",
+  RATIONAL_PLUS: "rationalPlus",
+  RATIONAL_MINUS: "rationalMinus",
+  RATIONAL_MULTIPLE: "rationalMultiple",
+  RATIONAL_DIVISION: "rationalDivision",
+  DISTRIBUTIVE_SIMPLE: "distributiveSimple",
+  DISTRIBUTIVE_COEFF: "distributiveCoeff",
+  DISTRIBUTIVE_DIVIDE: "distributiveDivide",
+  STAT_AVERAGE: "statAverage",
+  STAT_MEDIAN: "statMedian",
+  STAT_MODE: "statMode",
+  STAT_RANGE: "statRange",
 };
 
 /**
@@ -464,4 +700,15 @@ export const PROBLEM_DESCRIPTIONS = {
   parallelogramArea: "평행사변형의 넓이",
   trapezoidArea: "사다리꼴의 넓이",
   rectPerimeter: "직사각형의 둘레",
+  statAverage: "평균 구하기",
+  statMedian: "중앙값 구하기",
+  statMode: "최빈값 구하기",
+  statRange: "범위 구하기",
+  distributiveSimple: "단항식과 다항식의 곱 (계수 1)",
+  distributiveCoeff: "단항식과 다항식의 곱 (계수 포함)",
+  distributiveDivide: "다항식 ÷ 단항식",
+  rationalPlus: "유리수의 덧셈",
+  rationalMinus: "유리수의 뺄셈",
+  rationalMultiple: "유리수의 곱셈",
+  rationalDivision: "유리수의 나눗셈",
 };

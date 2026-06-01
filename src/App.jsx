@@ -10,6 +10,8 @@ const Decimal = lazy(() => import("./pages/Decimal"));
 const Fraction = lazy(() => import("./pages/Fraction"));
 const Geometry = lazy(() => import("./pages/Geometry"));
 const Statistics = lazy(() => import("./pages/Statistics"));
+const Rational = lazy(() => import("./pages/Rational"));
+const Algebra = lazy(() => import("./pages/Algebra"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const About = lazy(() => import("./pages/About"));
@@ -32,6 +34,8 @@ const pageTitles = {
   "/practice/fraction": "Fraction | Math Trail",
   "/practice/geometry": "Geometry | Math Trail",
   "/practice/statistics": "Statistics | Math Trail",
+  "/practice/rational": "Rational | Math Trail",
+  "/practice/algebra": "Algebra | Math Trail",
   "/info/privacy": "Privacy Policy | Math Trail",
   "/info/terms": "Terms | Math Trail",
   "/info/about": "About | Math Trail",
@@ -60,6 +64,8 @@ const App = () => {
               <Route path="fraction" element={<Fraction />} />
               <Route path="geometry" element={<Geometry />} />
               <Route path="statistics" element={<Statistics />} />
+              <Route path="rational" element={<Rational />} />
+              <Route path="algebra" element={<Algebra />} />
             </Route>
             {/* 정보페이지들 */}
             <Route path="/info">

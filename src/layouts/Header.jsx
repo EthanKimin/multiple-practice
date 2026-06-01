@@ -13,6 +13,8 @@ const Header = () => {
     { path: "/practice/fraction", label: "FRACTION" },
     { path: "/practice/geometry", label: "GEOMETRY" },
     { path: "/practice/statistics", label: "STATISTICS" },
+    { path: "/practice/rational", label: "RATIONAL" },
+    { path: "/practice/algebra", label: "ALGEBRA" },
   ];
 
   return (

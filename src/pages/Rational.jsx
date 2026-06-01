@@ -4,12 +4,14 @@ import TestLayout from "../layouts/TestLayout";
 import "./PracticePages.css";
 import Placeholder from "../components/Placeholder";
 
-const Basic = () => {
+const Rational = () => {
   const menuItems = [
-    { id: "plus", title: "덧셈연습", maxNum: 9, icon: "➕" },
-    { id: "minus", title: "뺄셈연습", maxNum: 9, icon: "➖" },
-    { id: "multiple", title: "곱셈연습", maxNum: 9, icon: "✖️" },
-    { id: "division", title: "나눗셈연습", maxNum: 9, icon: "➗" },
+    { id: "integerPlus", title: "정수의 덧셈", maxNum: 10, icon: "➕" },
+    { id: "integerMinus", title: "정수의 뺄셈", maxNum: 10, icon: "➖" },
+    { id: "rationalPlus", title: "유리수의 덧셈", maxNum: 5, icon: "➕" },
+    { id: "rationalMinus", title: "유리수의 뺄셈", maxNum: 5, icon: "➖" },
+    { id: "rationalMultiple", title: "유리수의 곱셈", maxNum: 4, icon: "✖️" },
+    { id: "rationalDivision", title: "유리수의 나눗셈", maxNum: 4, icon: "➗" },
   ];
   const { selectedType, selectedItem, handleMenuClick } =
     useTestLogic(menuItems);
@@ -17,7 +19,7 @@ const Basic = () => {
   return (
     <TestLayout
       menuItems={menuItems}
-      pageTitle="기초 연산 연습"
+      pageTitle="정수와 유리수 연산 연습"
       selectedType={selectedType}
       onMenuClick={handleMenuClick}
     >
@@ -35,4 +37,4 @@ const Basic = () => {
   );
 };
 
-export default Basic;
+export default Rational;

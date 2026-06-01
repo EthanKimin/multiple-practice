@@ -1,0 +1,153 @@
+/* ========== 대수식 공통 ========== */
+.algebra {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+/* ========== 표시 (AlgebraView) ========== */
+.algebra--view {
+  font-size: 1.4rem;
+  color: var(--color-text-primary);
+}
+
+.algebra__coeff {
+  color: var(--color-primary);
+}
+
+.algebra__const {
+  color: var(--color-text-primary);
+}
+
+/* ========== 입력 (AlgebraInput) ========== */
+.algebra--input {
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.algebra__sign-btn {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.algebra__sign-btn--pos {
+  color: #2563eb;
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
+.algebra__sign-btn--pos:hover {
+  background: #dbeafe;
+  border-color: #2563eb;
+}
+
+.algebra__sign-btn--neg {
+  color: #dc2626;
+  border-color: #fca5a5;
+  background: #fff5f5;
+}
+
+.algebra__sign-btn--neg:hover {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
+.algebra__num-input {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 56px;
+  padding: 6px 6px;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  text-align: center;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.algebra__num-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 139, 0.1);
+}
+
+.algebra__num-input::placeholder {
+  color: #a0aec0;
+  font-size: 0.8rem;
+}
+
+.algebra__var {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  padding: 0 2px;
+}
+
+/* 정답 */
+.algebra--input.correct .algebra__num-input {
+  border-color: #10b981;
+  background: #f0fdf4;
+  color: #065f46;
+}
+
+/* 오답 */
+.algebra--input.incorrect .algebra__num-input {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+/* ========== 모바일 ========== */
+@media (max-width: 768px) {
+  .algebra--view {
+    font-size: 1.2rem;
+  }
+
+  .algebra__sign-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+
+  .algebra__num-input {
+    width: 48px;
+    font-size: 1.1rem;
+    padding: 5px 4px;
+  }
+
+  .algebra__var {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .algebra--input {
+    gap: 4px;
+  }
+
+  .algebra__sign-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .algebra__num-input {
+    width: 42px;
+    font-size: 1rem;
+    padding: 4px;
+  }
+}

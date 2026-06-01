@@ -43,6 +43,18 @@ const Home = () => {
       description: "데이터 분석의 기초를 배웁니다",
       link: "/practice/statistics",
     },
+    {
+      title: "유리수",
+      icon: "🔣",
+      description: "정수와 유리수의 사칙연산을 익힙니다",
+      link: "/practice/rational",
+    },
+    {
+      title: "문자식 분배법칙",
+      icon: "✏️",
+      description: "단항식과 다항식의 곱셈·나눗셈을 연습합니다",
+      link: "/practice/algebra",
+    },
   ];
 
   return (

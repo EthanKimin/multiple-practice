@@ -1,0 +1,168 @@
+/* ========== 유리수 공통 ========== */
+.rational {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 600;
+  gap: 2px;
+}
+
+.rational__paren {
+  font-size: 1.6rem;
+  color: var(--color-text-secondary);
+  line-height: 1;
+}
+
+.rational__sign {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rational__sign--pos {
+  color: #2563eb;
+}
+
+.rational__sign--neg {
+  color: #dc2626;
+}
+
+.rational__fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.rational__numerator,
+.rational__denominator {
+  text-align: center;
+  line-height: 1;
+  font-size: 1.1rem;
+  padding: 1px 4px;
+}
+
+.rational__line {
+  width: 100%;
+  min-width: 20px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  margin: 1px 0;
+}
+
+/* ========== 유리수 표시 (RationalView) ========== */
+.rational--view {
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+}
+
+/* ========== 유리수 입력 (RationalInput) ========== */
+.rational--input {
+  gap: 4px;
+}
+
+.rational__sign-btn {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.rational__sign-btn--pos {
+  color: #2563eb;
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
+.rational__sign-btn--pos:hover {
+  background: #dbeafe;
+  border-color: #2563eb;
+}
+
+.rational__sign-btn--neg {
+  color: #dc2626;
+  border-color: #fca5a5;
+  background: #fff5f5;
+}
+
+.rational__sign-btn--neg:hover {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
+.rational__input {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 56px;
+  padding: 4px 6px;
+  border: 2px solid #cbd5e0;
+  border-radius: 6px;
+  text-align: center;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.rational__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 0, 139, 0.1);
+}
+
+.rational__input::placeholder {
+  color: #a0aec0;
+  font-size: 0.8rem;
+}
+
+/* 정답 상태 */
+.rational--input.correct .rational__input {
+  border-color: #10b981;
+  background: #f0fdf4;
+  color: #065f46;
+}
+
+.rational--input.correct .rational__line {
+  background-color: #10b981;
+}
+
+/* 오답 상태 */
+.rational--input.incorrect .rational__input {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.rational--input.incorrect .rational__line {
+  background-color: #ef4444;
+}
+
+/* ========== 모바일 ========== */
+@media (max-width: 768px) {
+  .rational__sign-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+
+  .rational__input {
+    width: 48px;
+    font-size: 1rem;
+    padding: 3px 4px;
+  }
+
+  .rational__numerator,
+  .rational__denominator {
+    font-size: 1rem;
+  }
+}

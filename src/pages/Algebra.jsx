@@ -4,12 +4,11 @@ import TestLayout from "../layouts/TestLayout";
 import "./PracticePages.css";
 import Placeholder from "../components/Placeholder";
 
-const Basic = () => {
+const Algebra = () => {
   const menuItems = [
-    { id: "plus", title: "덧셈연습", maxNum: 9, icon: "➕" },
-    { id: "minus", title: "뺄셈연습", maxNum: 9, icon: "➖" },
-    { id: "multiple", title: "곱셈연습", maxNum: 9, icon: "✖️" },
-    { id: "division", title: "나눗셈연습", maxNum: 9, icon: "➗" },
+    { id: "distributiveSimple", title: "단항식 × 다항식 (기본)", maxNum: 7, icon: "✏️" },
+    { id: "distributiveCoeff", title: "단항식 × 다항식 (계수)", maxNum: 5, icon: "📝" },
+    { id: "distributiveDivide", title: "다항식 ÷ 단항식", maxNum: 5, icon: "➗" },
   ];
   const { selectedType, selectedItem, handleMenuClick } =
     useTestLogic(menuItems);
@@ -17,7 +16,7 @@ const Basic = () => {
   return (
     <TestLayout
       menuItems={menuItems}
-      pageTitle="기초 연산 연습"
+      pageTitle="문자를 사용한 식 — 분배법칙"
       selectedType={selectedType}
       onMenuClick={handleMenuClick}
     >
@@ -35,4 +34,4 @@ const Basic = () => {
   );
 };
 
-export default Basic;
+export default Algebra;

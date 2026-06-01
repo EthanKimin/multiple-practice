@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { FractionView, FractionInput } from "./Fraction";
-import { isFractionType, isGeometryType, isIntegerType } from "../utils/problemGenerator";
+import { RationalView, RationalInput } from "./RationalFraction";
+import { AlgebraInput } from "./AlgebraInput";
+import { isFractionType, isGeometryType, isIntegerType, isRationalType, isAlgebraType, isStatisticsType } from "../utils/problemGenerator";
 import "./ProblemRow.css";
 
 /**
@@ -80,6 +82,47 @@ const ProblemRow = ({ problem, type, onAnswerChange }) => {
     );
   }
 
+  // 유리수 문제 ((±분자/분모) 형태 표시 + 부호 토글 분수 입력)
+  if (isRationalType(type)) {
+    return (
+      <div className="problem problem--fraction">
+        <div className="problem__equation">
+          <RationalView {...display.a} />
+          <span className="problem__operator">{display.op}</span>
+          <RationalView {...display.b} />
+          <span className="problem__equals">=</span>
+          <RationalInput
+            value={userAnswer}
+            isCorrect={isCorrect}
+            onChange={onAnswerChange}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // 대수식(분배법칙) 문제: 식 텍스트 표시 + [±계수]x [±상수] 입력
+  if (isAlgebraType(type)) {
+    return (
+      <div className="problem problem--algebra">
+        <p className="problem__question">{display} =</p>
+        <div className="problem__answer-row">
+          <AlgebraInput
+            value={userAnswer}
+            isCorrect={isCorrect}
+            onChange={onAnswerChange}
+          />
+          {isCorrect === true && (
+            <span className="problem__feedback problem__feedback--correct" aria-label="정답">✓</span>
+          )}
+          {isCorrect === false && (
+            <span className="problem__feedback problem__feedback--incorrect" aria-label="오답">✗</span>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   // 정수 문제 (부호 토글 버튼 + 숫자 입력)
   if (isIntegerType(type)) {
     return (
@@ -99,6 +142,35 @@ const ProblemRow = ({ problem, type, onAnswerChange }) => {
         {isCorrect === false && (
           <span className="problem__feedback problem__feedback--incorrect" aria-label="오답">✗</span>
         )}
+      </div>
+    );
+  }
+
+  // 통계 문제 (데이터 + 질문 텍스트 + 소수 입력)
+  if (isStatisticsType(type)) {
+    const [dataLine, questionLine] = display.split("\n");
+    return (
+      <div className="problem problem--geometry">
+        <p className="problem__data">{dataLine}</p>
+        <div className="problem__answer-row">
+          <span className="problem__question-inline">{questionLine}</span>
+          <input
+            type="text"
+            inputMode="decimal"
+            className={`problem__input ${answerClass}`}
+            value={userAnswer || ""}
+            onChange={(e) => onAnswerChange(e.target.value)}
+            placeholder="답"
+            autoComplete="off"
+            aria-label="답안 입력"
+          />
+          {isCorrect === true && (
+            <span className="problem__feedback problem__feedback--correct" aria-label="정답">✓</span>
+          )}
+          {isCorrect === false && (
+            <span className="problem__feedback problem__feedback--incorrect" aria-label="오답">✗</span>
+          )}
+        </div>
       </div>
     );
   }

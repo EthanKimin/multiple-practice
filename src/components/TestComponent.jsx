@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import Timer from "./Timer";
 import ProblemRow from "./ProblemRow";
 import "./TestComponent.css";
-import { generateProblems, isSameFraction, isFractionType } from "../utils/problemGenerator";
+import { generateProblems, isSameFraction, isFractionType, isRationalType, isAlgebraType, isCorrectAlgebra } from "../utils/problemGenerator";
 
 /**
  * 기본 연산 및 소수 테스트 컴포넌트
@@ -57,6 +57,16 @@ export const BasicAndDecimalTest = ({ title, type, maxNum = 9 }) => {
       } else {
         arr[idx].isCorrect = null;
       }
+      return arr;
+    });
+  }, []);
+
+  /** 대수식 입력 처리 */
+  const handleAlgebraInput = useCallback((idx, val) => {
+    setProblems((prev) => {
+      const arr = [...prev];
+      arr[idx].userAnswer = val;
+      arr[idx].isCorrect = isCorrectAlgebra(val, arr[idx].correctAnswer);
       return arr;
     });
   }, []);
@@ -133,9 +143,11 @@ export const BasicAndDecimalTest = ({ title, type, maxNum = 9 }) => {
                 problem={p}
                 type={type}
                 onAnswerChange={(val) =>
-                  isFractionType(type)
-                    ? handleFractionInput(i, val)
-                    : handleInput(i, val)
+                  isAlgebraType(type)
+                    ? handleAlgebraInput(i, val)
+                    : (isFractionType(type) || isRationalType(type))
+                      ? handleFractionInput(i, val)
+                      : handleInput(i, val)
                 }
               />
             ))}

@@ -41,6 +41,12 @@ const NotFound = () => {
             <li>
               <Link to="/practice/statistics">통계</Link>
             </li>
+            <li>
+              <Link to="/practice/rational">유리수</Link>
+            </li>
+            <li>
+              <Link to="/practice/algebra">문자식</Link>
+            </li>
           </ul>
         </div>
       </div>
